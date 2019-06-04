@@ -1,14 +1,15 @@
-package pers.xiaoming.fault_tolerance.hystrix;
+package pers.xiaoming.fault_tolerance.hystrix.basic_func_test;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import pers.xiaoming.fault_tolerance.hystrix.Application;
 import pers.xiaoming.fault_tolerance.hystrix.controller.MyTripController;
 import pers.xiaoming.fault_tolerance.hystrix.entity.TripInfo;
-import pers.xiaoming.fault_tolerance.hystrix.service.HotelService;
 
 import java.io.IOException;
 
@@ -16,15 +17,13 @@ import java.io.IOException;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 public class BasicFunctionalTest {
+
     @Autowired
     private MyTripController myTripController;
 
-    @Autowired
-    private HotelService hotelService;
-
     @Test
     public void testControllerFunction() throws IOException {
-        TripInfo info = myTripController.get(111);
-        System.out.println(info);
+        TripInfo info = myTripController.get(BasicFunctionalTestConfig.getDefaultTripId());
+        Assert.assertEquals(info, BasicFunctionalTestConfig.getDefaultTripInfo());
     }
 }

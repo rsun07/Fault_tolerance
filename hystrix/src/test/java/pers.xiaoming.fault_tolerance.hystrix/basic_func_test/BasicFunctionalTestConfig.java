@@ -1,6 +1,7 @@
-package pers.xiaoming.fault_tolerance.hystrix;
+package pers.xiaoming.fault_tolerance.hystrix.basic_func_test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 import pers.xiaoming.fault_tolerance.hystrix.backends.HttpClient;
 import pers.xiaoming.fault_tolerance.hystrix.entity.AirlineInfo;
 import pers.xiaoming.fault_tolerance.hystrix.entity.HotelInfo;
+import pers.xiaoming.fault_tolerance.hystrix.entity.TripInfo;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -19,19 +21,29 @@ import java.time.LocalDateTime;
 public class BasicFunctionalTestConfig {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-    private HotelInfo defaultHotelInfo = HotelInfo.builder()
+    private static HotelInfo defaultHotelInfo = HotelInfo.builder()
             .refNum(101)
             .name("Hyatt")
             .checkinDate(LocalDate.now().toString())
             .checkoutDate(LocalDate.now().plusDays(1).toString())
             .build();
 
-    private AirlineInfo defaultAirlineInfo = AirlineInfo.builder()
+    private static AirlineInfo defaultAirlineInfo = AirlineInfo.builder()
             .refNum(101)
             .name("AA")
             .departureAirportName("IAD")
             .arrivalAirportName("LAX")
             .departureTime(LocalDateTime.now().toString())
+            .build();
+
+    @Getter
+    private static int defaultTripId = 888;
+
+    @Getter
+    private static TripInfo defaultTripInfo = TripInfo.builder()
+            .id(defaultTripId)
+            .hotelInfo(defaultHotelInfo)
+            .airlineInfo(defaultAirlineInfo)
             .build();
 
     // Indicates that a bean should be given preference when multiple candidates
