@@ -1,6 +1,7 @@
 package pers.xiaoming.fault_tolerance.hystrix.hystrix;
 
 import com.netflix.hystrix.HystrixCommandProperties;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class HystrixOptionalConfigs {
     private static final int DEFAULT_CIRCUIT_BREAKER_ERROR_THRESHOLD_PERCENTAGE = 35;
     private static final int DEFAULT_CIRCUIT_BREAKER_REQUEST_VOLUME_THRESHOLD = 10;
@@ -68,7 +70,7 @@ public class HystrixOptionalConfigs {
             configsWithDefaultsBuilder.isolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.SEMAPHORE);
         }
 
-        if (isolationStrategy.equals(HystrixCommandProperties.ExecutionIsolationStrategy.SEMAPHORE)) {
+        if (configsWithDefaultsBuilder.isolationStrategy.equals(HystrixCommandProperties.ExecutionIsolationStrategy.SEMAPHORE)) {
             if (semaphoreMaxConcurrentRequests > 0) {
                 configsWithDefaultsBuilder.semaphoreMaxConcurrentRequests(semaphoreMaxConcurrentRequests);
             } else {

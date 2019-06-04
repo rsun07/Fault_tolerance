@@ -1,9 +1,11 @@
 spring.application.name: hystrix_demo_service
 server:
   port: ${PORT:8080}
-#            @Value("${jetty.threadPool.maxThreads:200}") final String maxThreads,
-#            @Value("${jetty.threadPool.minThreads:8}") final String minThreads,
-#            @Value("${jetty.threadPool.idleTimeout:60000}") final String idleTimeout)
+
+backends:
+  hosts:
+    hotel-endpoint: localhost:9090
+    airline-endpoint: localhost:7070
 
 #logging:
 #  pattern:

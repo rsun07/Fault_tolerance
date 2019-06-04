@@ -10,10 +10,10 @@ import pers.xiaoming.fault_tolerance.hystrix.backends.HttpClientImpl;
 @Configuration
 public class BackendsConfig {
 
-    @Value("${hotel-endpoint}")
+    @Value("${backends.hosts.hotel-endpoint}")
     private String hotelEndpoint;
 
-    @Value("${airline-endpoint}")
+    @Value("${backends.hosts.airline-endpoint}")
     private String airlineEndpoint;
 
     @Bean
