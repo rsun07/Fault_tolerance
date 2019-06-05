@@ -12,7 +12,14 @@ import java.io.IOException;
 public class HystrixCommandFactory {
     private final HystrixCommand.Setter hystrixCommandSetter;
 
+    private final String fallback;
+
     public HystrixCommandFactory(String groupKey, String commandKey, HystrixOptionalConfigs configs) {
+        if (configs.isEnableFallback()) {
+            this.fallback = configs.getFallback();
+        } else {
+            this.fallback = null;
+        }
 
         configs = configs.fillWithDefaults();
         this.hystrixCommandSetter = HystrixCommand.Setter
@@ -31,6 +38,7 @@ public class HystrixCommandFactory {
                         .withExecutionIsolationSemaphoreMaxConcurrentRequests(
                                 configs.getSemaphoreMaxConcurrentRequests()
                         )
+                        .withFallbackEnabled(configs.isEnableFallback())
                 );
 
         if (configs.getIsolationStrategy().equals(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)) {
@@ -48,6 +56,11 @@ public class HystrixCommandFactory {
             @Override
             protected String run() throws IOException {
                 return client.get(id);
+            }
+
+            @Override
+            protected String getFallback() {
+                return fallback;
             }
         };
     }

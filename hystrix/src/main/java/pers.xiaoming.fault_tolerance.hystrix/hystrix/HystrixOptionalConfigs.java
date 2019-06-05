@@ -35,6 +35,9 @@ public class HystrixOptionalConfigs {
 
     private int timeoutInMillis;
 
+    private boolean enableFallback;
+    private String fallback;
+
     private HystrixCommandProperties.ExecutionIsolationStrategy isolationStrategy;
 
     public HystrixOptionalConfigs fillWithDefaults() {
@@ -94,6 +97,11 @@ public class HystrixOptionalConfigs {
             } else {
                 configsWithDefaultsBuilder.threadKeepAliveTimeInMinutes(DEFAULT_THREAD_KEEP_ALIVE_TIME_MINUTES);
             }
+        }
+
+        if (enableFallback) {
+            configsWithDefaultsBuilder.fallback(fallback);
+            configsWithDefaultsBuilder.fallback(fallback);
         }
 
         return configsWithDefaultsBuilder.build();
