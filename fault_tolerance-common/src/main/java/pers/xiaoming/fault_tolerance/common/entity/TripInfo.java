@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.hystrix.entity;
+package pers.xiaoming.fault_tolerance.common.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

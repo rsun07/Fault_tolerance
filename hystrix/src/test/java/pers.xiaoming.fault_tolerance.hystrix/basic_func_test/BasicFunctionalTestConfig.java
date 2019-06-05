@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
-import pers.xiaoming.fault_tolerance.hystrix.backends.HttpClient;
-import pers.xiaoming.fault_tolerance.hystrix.entity.AirlineInfo;
-import pers.xiaoming.fault_tolerance.hystrix.entity.HotelInfo;
-import pers.xiaoming.fault_tolerance.hystrix.entity.TripInfo;
+import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
+import pers.xiaoming.fault_tolerance.common.entity.AirlineInfo;
+import pers.xiaoming.fault_tolerance.common.entity.HotelInfo;
+import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
 
 import java.io.IOException;
 import java.time.LocalDate;

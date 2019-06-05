@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import pers.xiaoming.fault_tolerance.hystrix.backends.HttpClient;
-import pers.xiaoming.fault_tolerance.hystrix.entity.HotelInfo;
+import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
+import pers.xiaoming.fault_tolerance.common.entity.HotelInfo;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixCommandFactory;
 
 import java.io.IOException;

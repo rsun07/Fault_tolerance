@@ -4,9 +4,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import pers.xiaoming.fault_tolerance.hystrix.backends.HttpClient;
-import pers.xiaoming.fault_tolerance.hystrix.backends.HttpClientImpl;
+import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
+import pers.xiaoming.fault_tolerance.common.backends.HttpClientImpl;
 
 @Configuration
 public class BackendsConfig {

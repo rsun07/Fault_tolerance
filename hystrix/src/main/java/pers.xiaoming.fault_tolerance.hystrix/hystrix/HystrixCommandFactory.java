@@ -5,7 +5,7 @@ import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixCommandKey;
 import com.netflix.hystrix.HystrixCommandProperties;
 import com.netflix.hystrix.HystrixThreadPoolProperties;
-import pers.xiaoming.fault_tolerance.hystrix.backends.HttpClient;
+import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 
 import java.io.IOException;
 

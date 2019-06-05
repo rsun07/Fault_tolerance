@@ -1,8 +1,8 @@
 package pers.xiaoming.fault_tolerance.hystrix.circuit_breaker_test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import pers.xiaoming.fault_tolerance.hystrix.backends.HttpClient;
-import pers.xiaoming.fault_tolerance.hystrix.entity.HotelInfo;
+import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
+import pers.xiaoming.fault_tolerance.common.entity.HotelInfo;
 
 import java.io.IOException;
 import java.util.Random;

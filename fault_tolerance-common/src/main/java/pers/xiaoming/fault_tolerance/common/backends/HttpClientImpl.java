@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.hystrix.backends;
+package pers.xiaoming.fault_tolerance.common.backends;
 
 import org.apache.http.client.fluent.Request;
 

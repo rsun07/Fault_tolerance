@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.hystrix.backends;
+package pers.xiaoming.fault_tolerance.common.backends;
 
 import java.io.IOException;
 

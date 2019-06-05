@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>fault_tolerance-common</module>
         <module>hystrix</module>
         <module>resilience4j</module>
     </modules>

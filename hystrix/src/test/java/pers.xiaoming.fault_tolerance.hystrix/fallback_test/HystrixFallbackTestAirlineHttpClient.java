@@ -1,8 +1,8 @@
 package pers.xiaoming.fault_tolerance.hystrix.fallback_test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import pers.xiaoming.fault_tolerance.hystrix.backends.HttpClient;
-import pers.xiaoming.fault_tolerance.hystrix.entity.AirlineInfo;
+import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
+import pers.xiaoming.fault_tolerance.common.entity.AirlineInfo;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

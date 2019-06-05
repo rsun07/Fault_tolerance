@@ -1,6 +1,6 @@
 package pers.xiaoming.fault_tolerance.hystrix.fallback_test;
 
-import pers.xiaoming.fault_tolerance.hystrix.backends.HttpClient;
+import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 
 import java.io.IOException;
 
