@@ -21,31 +21,6 @@ import java.time.LocalDateTime;
 public class BasicFunctionalTestConfig {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-    private static HotelInfo defaultHotelInfo = HotelInfo.builder()
-            .refNum(101)
-            .name("Hyatt")
-            .checkinDate(LocalDate.now().toString())
-            .checkoutDate(LocalDate.now().plusDays(1).toString())
-            .build();
-
-    private static AirlineInfo defaultAirlineInfo = AirlineInfo.builder()
-            .refNum(101)
-            .name("AA")
-            .departureAirportName("IAD")
-            .arrivalAirportName("LAX")
-            .departureTime(LocalDateTime.now().toString())
-            .build();
-
-    @Getter
-    private static int defaultTripId = 888;
-
-    @Getter
-    private static TripInfo defaultTripInfo = TripInfo.builder()
-            .id(defaultTripId)
-            .hotelInfo(defaultHotelInfo)
-            .airlineInfo(defaultAirlineInfo)
-            .build();
-
     // Indicates that a bean should be given preference when multiple candidates
     // are qualified to autowire a single-valued dependency.
     @Primary
@@ -55,7 +30,7 @@ public class BasicFunctionalTestConfig {
         return new HttpClient() {
             @Override
             public String get(long id) throws IOException {
-                return OBJECT_MAPPER.writeValueAsString(defaultHotelInfo);
+                return OBJECT_MAPPER.writeValueAsString(BasicFunctionalTest.getDEFAULT_TRIP_INFO().getHotelInfo());
             }
         };
     }
@@ -67,7 +42,7 @@ public class BasicFunctionalTestConfig {
         return new HttpClient() {
             @Override
             public String get(long id) throws IOException {
-                return OBJECT_MAPPER.writeValueAsString(defaultAirlineInfo);
+                return OBJECT_MAPPER.writeValueAsString(BasicFunctionalTest.getDEFAULT_TRIP_INFO().getAirlineInfo());
             }
         };
     }
