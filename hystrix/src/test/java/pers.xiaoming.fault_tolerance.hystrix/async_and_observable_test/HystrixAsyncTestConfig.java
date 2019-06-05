@@ -1,6 +1,5 @@
-package pers.xiaoming.fault_tolerance.hystrix.async_test;
+package pers.xiaoming.fault_tolerance.hystrix.async_and_observable_test;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

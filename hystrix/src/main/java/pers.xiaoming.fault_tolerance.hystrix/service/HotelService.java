@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixCommandFactory;
+import rx.Observable;
 
 import java.util.concurrent.Future;
 
@@ -27,5 +28,13 @@ public class HotelService {
 
     public Future<String> getAsync(long id) {
         return hystrixCommandFactory.createCommand(client, id).queue();
+    }
+
+    public Observable<String> getHotObservable(long id) {
+        return hystrixCommandFactory.createCommand(client, id).observe();
+    }
+
+    public Observable<String> getColdObservable(long id) {
+        return hystrixCommandFactory.createCommand(client, id).toObservable();
     }
 }

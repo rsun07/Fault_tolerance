@@ -31,4 +31,15 @@ public class MyTripController {
     public TripInfo getAsync(@RequestParam("trip_id") long id) throws IOException, ExecutionException, InterruptedException {
         return service.getAsync(id);
     }
+
+    @GetMapping("/get_hot_observable")
+    public TripInfo getFromHotObservable(@RequestParam("trip_id") long id) throws IOException {
+        return service.getFromHotObservable(id);
+    }
+
+    @GetMapping("/get_cold_observable")
+    public TripInfo getFromColdObservable(@RequestParam("trip_id") long id) throws IOException {
+        return service.getFromColdObservable(id);
+    }
+
 }

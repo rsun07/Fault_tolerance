@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.hystrix.async_test;
+package pers.xiaoming.fault_tolerance.hystrix.async_and_observable_test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;

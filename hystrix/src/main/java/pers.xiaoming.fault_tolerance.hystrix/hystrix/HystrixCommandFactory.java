@@ -23,6 +23,9 @@ public class HystrixCommandFactory {
 
         configs = configs.fillWithDefaults();
         this.hystrixCommandSetter = HystrixCommand.Setter
+                // Hystrix uses the command group key to group together commands such as
+                // for reporting, alerting, dashboards, or team/library ownership.
+                // By default Hystrix uses this to define the command thread-pool unless a separate one is defined.
                 .withGroupKey(HystrixCommandGroupKey.Factory.asKey(groupKey))
                 .andCommandKey(HystrixCommandKey.Factory.asKey(commandKey))
                 .andCommandPropertiesDefaults(HystrixCommandProperties.Setter()

@@ -62,4 +62,16 @@ public class BasicFunctionalTest {
         TripInfo info = myTripController.getAsync(DEFAULT_TRIP_ID);
         Assert.assertEquals(info, DEFAULT_TRIP_INFO);
     }
+
+    @Test
+    public void testHotObservable() throws IOException {
+        TripInfo info = myTripController.getFromHotObservable(DEFAULT_TRIP_ID);
+        Assert.assertEquals(info, DEFAULT_TRIP_INFO);
+    }
+
+    @Test
+    public void testColdObservable() throws IOException {
+        TripInfo info = myTripController.getFromColdObservable(DEFAULT_TRIP_ID);
+        Assert.assertEquals(info, DEFAULT_TRIP_INFO);
+    }
 }
