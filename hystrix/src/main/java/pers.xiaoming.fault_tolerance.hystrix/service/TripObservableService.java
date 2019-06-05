@@ -2,6 +2,7 @@ package pers.xiaoming.fault_tolerance.hystrix.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pers.xiaoming.fault_tolerance.common.entity.AirlineInfo;
 import pers.xiaoming.fault_tolerance.common.entity.HotelInfo;
 import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
@@ -9,6 +10,7 @@ import rx.Observable;
 
 import java.io.IOException;
 
+@Service
 public class TripObservableService {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 

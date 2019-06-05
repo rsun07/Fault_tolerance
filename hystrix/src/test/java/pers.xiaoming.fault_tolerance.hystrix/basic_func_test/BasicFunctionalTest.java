@@ -13,6 +13,7 @@ import pers.xiaoming.fault_tolerance.common.entity.HotelInfo;
 import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
 import pers.xiaoming.fault_tolerance.hystrix.Application;
 import pers.xiaoming.fault_tolerance.hystrix.controller.MyTripController;
+import pers.xiaoming.fault_tolerance.hystrix.controller.MyTripObservableController;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -72,6 +73,18 @@ public class BasicFunctionalTest {
     @Test
     public void testColdObservable() throws IOException {
         TripInfo info = myTripController.getFromColdObservable(DEFAULT_TRIP_ID);
+        Assert.assertEquals(info, DEFAULT_TRIP_INFO);
+    }
+
+    @Autowired
+    private MyTripObservableController myTripObservableController;
+
+    @Test
+    public void testHystrixObservableCommand() throws IOException {
+        TripInfo info = myTripObservableController.getFromColdObservable(DEFAULT_TRIP_ID);
+        Assert.assertEquals(info, DEFAULT_TRIP_INFO);
+
+        info = myTripObservableController.getFromHotObservable(DEFAULT_TRIP_ID);
         Assert.assertEquals(info, DEFAULT_TRIP_INFO);
     }
 }

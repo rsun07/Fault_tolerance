@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixCommandFactory;
+import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixObservableCommandFactory;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixOptionalConfigs;
 
 @Profile("hystrix-async-test")
@@ -44,5 +45,19 @@ public class HystrixAsyncTestConfig {
     @Qualifier("airlineHystrixCommandFactory")
     public HystrixCommandFactory getMockAirlineHystrixCommandFactory() {
         return new HystrixCommandFactory("Airline", "Get_Airline_Info", hystrixOptionalConfigs);
+    }
+
+    @Primary
+    @Bean
+    @Qualifier("hotelHystrixObservableCommandFactory")
+    public HystrixObservableCommandFactory getMockHotelHystrixObservableCommandFactory() {
+        return new HystrixObservableCommandFactory("Hotel", "Get_Hotel_Info_Observable", hystrixOptionalConfigs);
+    }
+
+    @Primary
+    @Bean
+    @Qualifier("airlineHystrixObservableCommandFactory")
+    public HystrixObservableCommandFactory getMockAirlineHystrixObservableCommandFactory() {
+        return new HystrixObservableCommandFactory("Airline", "Get_Airline_Info_Observable", hystrixOptionalConfigs);
     }
 }

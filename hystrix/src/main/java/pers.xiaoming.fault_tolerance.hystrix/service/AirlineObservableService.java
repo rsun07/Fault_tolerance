@@ -2,10 +2,12 @@ package pers.xiaoming.fault_tolerance.hystrix.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixObservableCommandFactory;
 import rx.Observable;
 
+@Service
 public class AirlineObservableService {
     private HttpClient client;
     private HystrixObservableCommandFactory hystrixObservableCommandFactory;
