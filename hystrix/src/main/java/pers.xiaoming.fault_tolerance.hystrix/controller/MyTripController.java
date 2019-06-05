@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pers.xiaoming.fault_tolerance.common.entity.AirlineInfo;
-import pers.xiaoming.fault_tolerance.common.entity.HotelInfo;
 import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
 import pers.xiaoming.fault_tolerance.hystrix.service.TripService;
 
