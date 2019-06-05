@@ -68,4 +68,36 @@ public class HystrixAsyncTest {
         Assert.assertTrue(endTime - startTime > DEFAULT_SLEEP_TIME_IN_MILLIS);
         Assert.assertTrue(endTime - startTime < DEFAULT_SLEEP_TIME_IN_MILLIS * 2);
     }
+
+    /*
+        2019-06-05 15:21:24.609  INFO 26734 --- [hystrix-Hotel-1] .x.f.h.a.HystrixAsyncTestHotelHttpClient : Start http call to Hotel Client
+        2019-06-05 15:21:24.609  INFO 26734 --- [strix-Airline-1] .f.h.a.HystrixAsyncTestAirlineHttpClient : Start http call to Airline Client
+        2019-06-05 15:21:26.615  INFO 26734 --- [strix-Airline-1] .f.h.a.HystrixAsyncTestAirlineHttpClient : Finish http call to Airline Client
+        2019-06-05 15:21:26.615  INFO 26734 --- [hystrix-Hotel-1] .x.f.h.a.HystrixAsyncTestHotelHttpClient : Finish http call to Hotel Client
+     */
+    @Test
+    public void testHotObservableCall() throws IOException {
+        long startTime = System.currentTimeMillis();
+        myTripController.getFromHotObservable(123);
+        long endTime = System.currentTimeMillis();
+
+        Assert.assertTrue(endTime - startTime > DEFAULT_SLEEP_TIME_IN_MILLIS);
+        Assert.assertTrue(endTime - startTime < DEFAULT_SLEEP_TIME_IN_MILLIS * 2);
+    }
+
+    /*
+        2019-06-05 15:22:47.438  INFO 26752 --- [hystrix-Hotel-1] .x.f.h.a.HystrixAsyncTestHotelHttpClient : Start http call to Hotel Client
+        2019-06-05 15:22:47.438  INFO 26752 --- [strix-Airline-1] .f.h.a.HystrixAsyncTestAirlineHttpClient : Start http call to Airline Client
+        2019-06-05 15:22:49.441  INFO 26752 --- [hystrix-Hotel-1] .x.f.h.a.HystrixAsyncTestHotelHttpClient : Finish http call to Hotel Client
+        2019-06-05 15:22:49.441  INFO 26752 --- [strix-Airline-1] .f.h.a.HystrixAsyncTestAirlineHttpClient : Finish http call to Airline Client
+     */
+    @Test
+    public void testColdObservableCall() throws IOException {
+        long startTime = System.currentTimeMillis();
+        myTripController.getFromHotObservable(123);
+        long endTime = System.currentTimeMillis();
+
+        Assert.assertTrue(endTime - startTime > DEFAULT_SLEEP_TIME_IN_MILLIS);
+        Assert.assertTrue(endTime - startTime < DEFAULT_SLEEP_TIME_IN_MILLIS * 2);
+    }
 }
