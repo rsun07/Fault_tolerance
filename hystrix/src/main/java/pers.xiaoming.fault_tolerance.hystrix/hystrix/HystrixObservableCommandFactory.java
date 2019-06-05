@@ -8,7 +8,7 @@ import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 import rx.Observable;
 
 public class HystrixObservableCommandFactory {
-    private final HystrixObservableCommand.Setter hystrixCommandSetter;
+    private final HystrixObservableCommand.Setter hystrixObservableCommandSetter;
 
     private final String fallback;
 
@@ -20,7 +20,7 @@ public class HystrixObservableCommandFactory {
         }
 
         configs = configs.fillWithDefaults();
-        this.hystrixCommandSetter = HystrixObservableCommand.Setter
+        this.hystrixObservableCommandSetter = HystrixObservableCommand.Setter
                 .withGroupKey(HystrixCommandGroupKey.Factory.asKey(groupKey))
                 .andCommandKey(HystrixCommandKey.Factory.asKey(commandKey))
                 .andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
@@ -41,10 +41,15 @@ public class HystrixObservableCommandFactory {
     }
 
     public HystrixObservableCommand<String> createCommand(HttpClient client, long id) {
-        return new HystrixObservableCommand<String>(hystrixCommandSetter) {
+        return new HystrixObservableCommand<String>(hystrixObservableCommandSetter) {
             @Override
             protected Observable<String> construct() {
                 return Observable.fromCallable(() -> client.get(id));
+            }
+
+            @Override
+            protected Observable<String> resumeWithFallback() {
+                return Observable.just(fallback);
             }
         };
     }
