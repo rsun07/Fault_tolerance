@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.hystrix.hystrix_test;
+package pers.xiaoming.fault_tolerance.hystrix.circuit_breaker_test;
 
 import com.netflix.hystrix.exception.HystrixRuntimeException;
 import lombok.extern.slf4j.Slf4j;
@@ -11,15 +11,14 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pers.xiaoming.fault_tolerance.hystrix.Application;
 import pers.xiaoming.fault_tolerance.hystrix.controller.MyTripController;
-import pers.xiaoming.fault_tolerance.hystrix.entity.TripInfo;
 
 import java.io.IOException;
 
-@ActiveProfiles("hystrix-test")
+@ActiveProfiles("hystrix-circuit-breaker-test")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @Slf4j
-public class HystrixTest {
+public class HystrixCircuitBreakerTest {
     private static final int TOTAL_ROUNDS = 100;
     private static final String SHORT_CICUIT_MSG = "Get_Hotel_Info short-circuited and no fallback available.";
 
@@ -27,7 +26,7 @@ public class HystrixTest {
     private MyTripController myTripController;
 
     @Test
-    public void testControllerFunction() throws IOException {
+    public void testCircuitBreaker() throws IOException {
         int count = 0;
         String lastMessage = null;
 
@@ -46,6 +45,6 @@ public class HystrixTest {
 
         Assert.assertEquals(SHORT_CICUIT_MSG, lastMessage);
         Assert.assertTrue(count >=
-                TOTAL_ROUNDS * (1 - HystrixTestConfig.LOWER_ERROR_THRESHOLD_FOR_TEST));
+                TOTAL_ROUNDS * (1 - HystrixCircuitBreakerTestConfig.LOWER_ERROR_THRESHOLD_FOR_TEST));
     }
 }

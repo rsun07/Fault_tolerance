@@ -100,7 +100,7 @@ public class HystrixOptionalConfigs {
         }
 
         if (enableFallback) {
-            configsWithDefaultsBuilder.fallback(fallback);
+            configsWithDefaultsBuilder.enableFallback(enableFallback);
             configsWithDefaultsBuilder.fallback(fallback);
         }
 
