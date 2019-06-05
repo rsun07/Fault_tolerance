@@ -2,6 +2,7 @@ package pers.xiaoming.fault_tolerance.hystrix.fallback_test;
 
 import com.netflix.hystrix.exception.HystrixRuntimeException;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,6 @@ public class HystrixFallbackTest {
                 break;
             }
         }
-        System.out.println(fallbackTripInfo);
+        Assert.assertEquals(fallbackTripInfo.getHotelInfo(), FALLBACK_HOTEL_INFO);
     }
 }
