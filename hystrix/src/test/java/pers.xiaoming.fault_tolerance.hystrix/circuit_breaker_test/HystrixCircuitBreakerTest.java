@@ -20,7 +20,7 @@ import java.io.IOException;
 @Slf4j
 public class HystrixCircuitBreakerTest {
     private static final int TOTAL_ROUNDS = 100;
-    private static final String SHORT_CICUIT_MSG = "Get_Hotel_Info short-circuited and no fallback available.";
+    private static final String SHORT_CICUIT_MSG = "Get_Hotel_Info short-circuited and fallback disabled.";
 
     @Autowired
     private MyTripController myTripController;

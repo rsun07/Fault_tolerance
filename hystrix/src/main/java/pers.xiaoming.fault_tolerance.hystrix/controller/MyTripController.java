@@ -8,33 +8,29 @@ import org.springframework.web.bind.annotation.RestController;
 import pers.xiaoming.fault_tolerance.common.entity.AirlineInfo;
 import pers.xiaoming.fault_tolerance.common.entity.HotelInfo;
 import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
-import pers.xiaoming.fault_tolerance.hystrix.service.AirlineService;
-import pers.xiaoming.fault_tolerance.hystrix.service.HotelService;
+import pers.xiaoming.fault_tolerance.hystrix.service.TripService;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/web-client")
 public class MyTripController {
 
-    private AirlineService airlineService;
-    private HotelService hotelService;
+    private TripService service;
 
     @Autowired
-    public MyTripController(AirlineService airlineService, HotelService hotelService) {
-        this.airlineService = airlineService;
-        this.hotelService = hotelService;
+    public MyTripController(TripService service) {
+        this.service = service;
     }
 
     @GetMapping
     public TripInfo get(@RequestParam("trip_id") long id) throws IOException {
-        HotelInfo hotelInfo = hotelService.getInfo(id);
-        AirlineInfo airlineInfo = airlineService.getInfo(id);
+        return service.get(id);
+    }
 
-        TripInfo tripInfo = new TripInfo(id);
-        tripInfo.setHotelInfo(hotelInfo);
-        tripInfo.setAirlineInfo(airlineInfo);
-
-        return tripInfo;
+    @GetMapping("/get_async")
+    public TripInfo getAsync(@RequestParam("trip_id") long id) throws IOException, ExecutionException, InterruptedException {
+        return service.getAsync(id);
     }
 }
