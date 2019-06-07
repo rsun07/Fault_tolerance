@@ -9,7 +9,7 @@ import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
 import pers.xiaoming.fault_tolerance.resilience4j.service.TripService;
 
 @RestController
-@RequestMapping("/web-client")
+@RequestMapping("/my_trip")
 public class MyTripController {
 
     private TripService service;

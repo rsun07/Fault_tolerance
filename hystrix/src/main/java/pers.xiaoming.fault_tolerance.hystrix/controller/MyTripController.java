@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-@RequestMapping("/web-client")
+@RequestMapping("/my_trip")
 public class MyTripController {
 
     private TripService service;
