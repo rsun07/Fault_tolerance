@@ -14,7 +14,7 @@
     <dependency>
       <groupId>pers.xiaoming.fault_tolerance</groupId>
       <artifactId>fault_tolerance-common</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>${parent.version}</version>
     </dependency>
 
     <dependency>
