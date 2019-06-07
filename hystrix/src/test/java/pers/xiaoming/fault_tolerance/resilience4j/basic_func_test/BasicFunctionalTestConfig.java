@@ -1,22 +1,16 @@
-package pers.xiaoming.fault_tolerance.hystrix.basic_func_test;
+package pers.xiaoming.fault_tolerance.resilience4j.basic_func_test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
-import pers.xiaoming.fault_tolerance.common.entity.AirlineInfo;
-import pers.xiaoming.fault_tolerance.common.entity.HotelInfo;
-import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-@Profile("basic-func-test")
+@Profile("hystrx-basic-func-test")
 @Configuration
 public class BasicFunctionalTestConfig {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();

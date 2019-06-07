@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.hystrix.basic_func_test;
+package pers.xiaoming.fault_tolerance.resilience4j.basic_func_test;
 
 import lombok.Getter;
 import org.junit.Assert;
@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.concurrent.ExecutionException;
 
-@ActiveProfiles("basic-func-test")
+@ActiveProfiles("hystrx-basic-func-test")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 public class BasicFunctionalTest {
