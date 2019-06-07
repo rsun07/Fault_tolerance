@@ -18,7 +18,7 @@ public class Rs4jCommandFactory {
                 .ringBufferSizeInClosedState(circuitBreakerConfigManager.getRingBufferSizeInClosedState())
                 .build();
 
-        this.circuitBreaker = CircuitBreaker.of(name, circuitBreakerConfig)
+        this.circuitBreaker = CircuitBreaker.of(name, circuitBreakerConfig);
     }
 
     public String execute(HttpClient client, long id) throws Exception {
