@@ -21,7 +21,7 @@ public class CircuitBreakerConfigManager {
     private int ringBufferSizeInClosedState;
 
     public CircuitBreakerConfigManager fillWithDefaults() {
-        CircuitBreakerConfigsBuilder configsWithDefaultsBuilder = CircuitBreakerConfigManager.builder();
+        CircuitBreakerConfigManagerBuilder configsWithDefaultsBuilder = CircuitBreakerConfigManager.builder();
 
         if (failureThresholdPercentage > 0) {
             configsWithDefaultsBuilder.failureThresholdPercentage(failureThresholdPercentage);
