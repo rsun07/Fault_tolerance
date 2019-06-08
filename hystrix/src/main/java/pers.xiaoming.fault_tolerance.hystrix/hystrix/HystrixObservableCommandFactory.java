@@ -4,7 +4,7 @@ import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixCommandKey;
 import com.netflix.hystrix.HystrixCommandProperties;
 import com.netflix.hystrix.HystrixObservableCommand;
-import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
+import pers.xiaoming.fault_tolerance.common.backends.HttpGetInterface;
 import rx.Observable;
 
 public class HystrixObservableCommandFactory<T> {
@@ -40,11 +40,11 @@ public class HystrixObservableCommandFactory<T> {
                 );
     }
 
-    public HystrixObservableCommand<T> createCommand(HttpClient client, long id) {
+    public HystrixObservableCommand<T> createCommand(HttpGetInterface<T> httpGetFunc) {
         return new HystrixObservableCommand<T>(hystrixObservableCommandSetter) {
             @Override
             protected Observable<T> construct() {
-                return Observable.fromCallable(() -> client.get(id));
+                return Observable.fromCallable(httpGetFunc::get);
             }
 
             @Override

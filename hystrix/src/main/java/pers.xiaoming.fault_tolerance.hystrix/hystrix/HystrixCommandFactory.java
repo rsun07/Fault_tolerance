@@ -55,11 +55,11 @@ public class HystrixCommandFactory<T> {
         }
     }
 
-    public HystrixCommand<T> createCommand(HttpGetInterface<T> supplier) {
+    public HystrixCommand<T> createCommand(HttpGetInterface<T> httpGetFunc) {
         return new HystrixCommand<T>(hystrixCommandSetter) {
             @Override
             protected T run() throws IOException {
-                return supplier.get();
+                return httpGetFunc.get();
             }
 
             @Override

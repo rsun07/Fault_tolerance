@@ -10,21 +10,21 @@ import rx.Observable;
 @Service
 public class HotelObservableService {
     private HttpClient client;
-    private HystrixObservableCommandFactory hystrixObservableCommandFactory;
+    private HystrixObservableCommandFactory<String> hystrixObservableCommandFactory;
 
     @Autowired
     public HotelObservableService(
             @Qualifier("hotelClient") HttpClient client,
-            @Qualifier("hotelHystrixObservableCommandFactory") HystrixObservableCommandFactory hystrixObservableCommandFactory) {
+            @Qualifier("hotelHystrixObservableCommandFactory") HystrixObservableCommandFactory<String> hystrixObservableCommandFactory) {
         this.client = client;
         this.hystrixObservableCommandFactory = hystrixObservableCommandFactory;
     }
 
     public Observable<String> getHotObservable(long id) {
-        return hystrixObservableCommandFactory.createCommand(client, id).observe();
+        return hystrixObservableCommandFactory.createCommand(() -> client.get(id)).observe();
     }
 
     public Observable<String> getColdObservable(long id) {
-        return hystrixObservableCommandFactory.createCommand(client, id).toObservable();
+        return hystrixObservableCommandFactory.createCommand(() -> client.get(id)).toObservable();
     }
 }

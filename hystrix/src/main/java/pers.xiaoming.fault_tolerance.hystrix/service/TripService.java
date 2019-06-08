@@ -7,12 +7,10 @@ import pers.xiaoming.fault_tolerance.common.entity.AirlineInfo;
 import pers.xiaoming.fault_tolerance.common.entity.HotelInfo;
 import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
 import rx.Observable;
-import rx.functions.Action1;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-import java.util.function.Consumer;
 
 @Service
 public class TripService {
