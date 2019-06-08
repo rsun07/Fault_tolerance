@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
+import pers.xiaoming.fault_tolerance.common.test.AsyncTestAirlineHttpClient;
+import pers.xiaoming.fault_tolerance.common.test.AsyncTestHotelHttpClient;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixCommandFactory;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixObservableCommandFactory;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixOptionalConfigs;
@@ -19,14 +21,14 @@ public class HystrixAsyncTestConfig {
     @Bean
     @Qualifier("hotelClient")
     public HttpClient getMockHotelClient() {
-        return new HystrixAsyncTestHotelHttpClient();
+        return new AsyncTestHotelHttpClient(HystrixAsyncTest.DEFAULT_SLEEP_TIME_IN_MILLIS);
     }
 
     @Primary
     @Bean
     @Qualifier("airlineClient")
     public HttpClient getMockAirlineClient() {
-        return new HystrixAsyncTestAirlineHttpClient();
+        return new AsyncTestAirlineHttpClient(HystrixAsyncTest.DEFAULT_SLEEP_TIME_IN_MILLIS);
     }
 
     private HystrixOptionalConfigs hystrixOptionalConfigs = HystrixOptionalConfigs.builder()

@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.hystrix.async_and_observable_test;
+package pers.xiaoming.fault_tolerance.common.test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 @Slf4j
-public class HystrixAsyncTestAirlineHttpClient implements HttpClient {
+public class AsyncTestAirlineHttpClient implements HttpClient {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     private static final AirlineInfo DEFAULT_AIRLINE_INFO = AirlineInfo.builder()
@@ -20,11 +20,20 @@ public class HystrixAsyncTestAirlineHttpClient implements HttpClient {
             .departureTime(LocalDateTime.now().toString())
             .build();
 
+    private final int sleepPeriodInMillis;
+
+    public AsyncTestAirlineHttpClient(int sleepPeriodInMillis) {
+        this.sleepPeriodInMillis = sleepPeriodInMillis;
+    }
 
     @Override
     public String get(long id) throws IOException {
         log.info("Start http call to Airline Client");
-        HystrixAsyncTest.sleep();
+        try {
+            Thread.sleep(sleepPeriodInMillis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         log.info("Finish http call to Airline Client");
         return OBJECT_MAPPER.writeValueAsString(DEFAULT_AIRLINE_INFO);
     }

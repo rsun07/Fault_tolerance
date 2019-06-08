@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
-import pers.xiaoming.fault_tolerance.common.test.CircuitBreakerTestAirlineHttpClient;
+import pers.xiaoming.fault_tolerance.common.test.TestAirlineDefaultValueHttpClient;
 import pers.xiaoming.fault_tolerance.common.test.CircuitBreakerTestHotelHttpClient;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixCommandFactory;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixOptionalConfigs;
@@ -41,6 +41,6 @@ public class HystrixCircuitBreakerTestConfig {
     @Bean
     @Qualifier("airlineClient")
     public HttpClient getMockAirlineClient() {
-        return new CircuitBreakerTestAirlineHttpClient();
+        return new TestAirlineDefaultValueHttpClient();
     }
 }
