@@ -1,0 +1,12 @@
+spring.application.name: resilience4j_demo_service
+server:
+  port: ${PORT:8080}
+
+backends:
+  hosts:
+    hotel-endpoint: localhost:9090
+    airline-endpoint: localhost:7070
+
+#logging:
+#  pattern:
+

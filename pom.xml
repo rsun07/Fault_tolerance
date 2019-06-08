@@ -13,6 +13,7 @@
         <module>fault_tolerance-common</module>
         <module>hystrix</module>
         <module>resilience4j</module>
+        <module>resilience4j_springboot2</module>
     </modules>
 
     <properties>
