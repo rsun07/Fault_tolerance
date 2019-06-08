@@ -28,13 +28,13 @@ public class HystrixCircuitBreakerTestConfig {
     @Primary
     @Bean
     @Qualifier("hotelHystrixCommandFactory")
-    public HystrixCommandFactory getMockHotelHystrixCommandFactory() {
-        HystrixOptionalConfigs configs = HystrixOptionalConfigs.builder()
+    public HystrixCommandFactory<String> getMockHotelHystrixCommandFactory() {
+        HystrixOptionalConfigs<String> configs = HystrixOptionalConfigs.<String>builder()
                 .circuitBreakerErrorThresholdPercentage(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .circuitBreakerRequestVolumeThreshold(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .circuitBreakerSleepWindowInMillis(100)
                 .build();
-        return new HystrixCommandFactory("Hotel", "Get_Hotel_Info", configs);
+        return new HystrixCommandFactory<>("Hotel", "Get_Hotel_Info", configs);
     }
 
     @Primary

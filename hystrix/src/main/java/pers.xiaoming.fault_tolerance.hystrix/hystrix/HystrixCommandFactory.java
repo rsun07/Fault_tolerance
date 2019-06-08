@@ -8,7 +8,6 @@ import com.netflix.hystrix.HystrixThreadPoolProperties;
 import pers.xiaoming.fault_tolerance.common.backends.HttpGetInterface;
 
 import java.io.IOException;
-import java.util.function.Supplier;
 
 public class HystrixCommandFactory<T> {
     private final HystrixCommand.Setter hystrixCommandSetter;

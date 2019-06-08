@@ -23,15 +23,15 @@ public class HystrixFallbackTestConfig {
     @Primary
     @Bean
     @Qualifier("hotelHystrixCommandFactory")
-    public HystrixCommandFactory getMockHotelHystrixCommandFactory() throws JsonProcessingException {
-        HystrixOptionalConfigs configs = HystrixOptionalConfigs.builder()
+    public HystrixCommandFactory<String> getMockHotelHystrixCommandFactory() throws JsonProcessingException {
+        HystrixOptionalConfigs<String> configs = HystrixOptionalConfigs.<String>builder()
                 .circuitBreakerErrorThresholdPercentage(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .circuitBreakerRequestVolumeThreshold(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .circuitBreakerSleepWindowInMillis(100)
                 .enableFallback(true)
                 .fallback(OBJECT_MAPPER.writeValueAsString(HystrixFallbackTest.FALLBACK_HOTEL_INFO))
                 .build();
-        return new HystrixCommandFactory("Hotel", "Get_Hotel_Info_Test", configs);
+        return new HystrixCommandFactory<>("Hotel", "Get_Hotel_Info_Test", configs);
     }
 
     // Indicates that a bean should be given preference when multiple candidates

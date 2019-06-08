@@ -31,35 +31,35 @@ public class HystrixAsyncTestConfig {
         return new AsyncTestAirlineHttpClient(HystrixAsyncTest.DEFAULT_SLEEP_TIME_IN_MILLIS);
     }
 
-    private HystrixOptionalConfigs hystrixOptionalConfigs = HystrixOptionalConfigs.builder()
+    private HystrixOptionalConfigs<String> hystrixOptionalConfigs = HystrixOptionalConfigs.<String>builder()
             .timeoutInMillis(HystrixAsyncTest.DEFAULT_SLEEP_TIME_IN_MILLIS * 3)
             .build();
 
     @Primary
     @Bean
     @Qualifier("hotelHystrixCommandFactory")
-    public HystrixCommandFactory getMockHotelHystrixCommandFactory() {
-        return new HystrixCommandFactory("Hotel", "Get_Hotel_Info", hystrixOptionalConfigs);
+    public HystrixCommandFactory<String> getMockHotelHystrixCommandFactory() {
+        return new HystrixCommandFactory<>("Hotel", "Get_Hotel_Info", hystrixOptionalConfigs);
     }
 
     @Primary
     @Bean
     @Qualifier("airlineHystrixCommandFactory")
-    public HystrixCommandFactory getMockAirlineHystrixCommandFactory() {
-        return new HystrixCommandFactory("Airline", "Get_Airline_Info", hystrixOptionalConfigs);
+    public HystrixCommandFactory<String> getMockAirlineHystrixCommandFactory() {
+        return new HystrixCommandFactory<>("Airline", "Get_Airline_Info", hystrixOptionalConfigs);
     }
 
     @Primary
     @Bean
     @Qualifier("hotelHystrixObservableCommandFactory")
-    public HystrixObservableCommandFactory getMockHotelHystrixObservableCommandFactory() {
-        return new HystrixObservableCommandFactory("Hotel", "Get_Hotel_Info_Observable", hystrixOptionalConfigs);
+    public HystrixObservableCommandFactory<String> getMockHotelHystrixObservableCommandFactory() {
+        return new HystrixObservableCommandFactory<>("Hotel", "Get_Hotel_Info_Observable", hystrixOptionalConfigs);
     }
 
     @Primary
     @Bean
     @Qualifier("airlineHystrixObservableCommandFactory")
     public HystrixObservableCommandFactory getMockAirlineHystrixObservableCommandFactory() {
-        return new HystrixObservableCommandFactory("Airline", "Get_Airline_Info_Observable", hystrixOptionalConfigs);
+        return new HystrixObservableCommandFactory<>("Airline", "Get_Airline_Info_Observable", hystrixOptionalConfigs);
     }
 }
