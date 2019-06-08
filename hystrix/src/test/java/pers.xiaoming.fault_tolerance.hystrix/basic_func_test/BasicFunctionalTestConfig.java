@@ -8,10 +8,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 import pers.xiaoming.fault_tolerance.common.test.TestAirlineDefaultValueHttpClient;
-import pers.xiaoming.fault_tolerance.common.test.TestConstants;
 import pers.xiaoming.fault_tolerance.common.test.TestHotelDefaultValueHttpClient;
-
-import java.io.IOException;
 
 @Profile("hystrix-basic-func-test")
 @Configuration
