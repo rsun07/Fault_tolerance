@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
+import pers.xiaoming.fault_tolerance.common.test.TestAirlineDefaultValueHttpClient;
+import pers.xiaoming.fault_tolerance.common.test.TestConstants;
+import pers.xiaoming.fault_tolerance.common.test.TestHotelDefaultValueHttpClient;
 
 import java.io.IOException;
 
@@ -21,23 +24,13 @@ public class BasicFunctionalTestConfig {
     @Bean
     @Qualifier("hotelClient")
     public HttpClient getMockHotelClient() {
-        return new HttpClient() {
-            @Override
-            public String get(long id) throws IOException {
-                return OBJECT_MAPPER.writeValueAsString(BasicFunctionalTest.getDEFAULT_TRIP_INFO().getHotelInfo());
-            }
-        };
+        return new TestHotelDefaultValueHttpClient();
     }
 
     @Primary
     @Bean
     @Qualifier("airlineClient")
     public HttpClient getMockAirlineClient() {
-        return new HttpClient() {
-            @Override
-            public String get(long id) throws IOException {
-                return OBJECT_MAPPER.writeValueAsString(BasicFunctionalTest.getDEFAULT_TRIP_INFO().getAirlineInfo());
-            }
-        };
+        return new TestAirlineDefaultValueHttpClient();
     }
 }

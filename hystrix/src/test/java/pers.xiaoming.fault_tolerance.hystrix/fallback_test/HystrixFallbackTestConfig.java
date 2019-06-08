@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
+import pers.xiaoming.fault_tolerance.common.test.TestConstants;
 import pers.xiaoming.fault_tolerance.common.test.FallbackTestHotelHttpClient;
 import pers.xiaoming.fault_tolerance.common.test.TestAirlineDefaultValueHttpClient;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixCommandFactory;
@@ -29,7 +30,7 @@ public class HystrixFallbackTestConfig {
                 .circuitBreakerRequestVolumeThreshold(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .circuitBreakerSleepWindowInMillis(100)
                 .enableFallback(true)
-                .fallback(OBJECT_MAPPER.writeValueAsString(HystrixFallbackTest.FALLBACK_HOTEL_INFO))
+                .fallback(OBJECT_MAPPER.writeValueAsString(TestConstants.FALLBACK_HOTEL_INFO))
                 .build();
         return new HystrixCommandFactory<>("Hotel", "Get_Hotel_Info_Test", configs);
     }

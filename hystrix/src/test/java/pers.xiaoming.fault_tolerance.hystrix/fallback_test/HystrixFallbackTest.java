@@ -9,25 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import pers.xiaoming.fault_tolerance.common.entity.HotelInfo;
 import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
+import pers.xiaoming.fault_tolerance.common.test.TestConstants;
 import pers.xiaoming.fault_tolerance.hystrix.Application;
 import pers.xiaoming.fault_tolerance.hystrix.controller.MyTripController;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 @ActiveProfiles("hystrix-fallback-test")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @Slf4j
 public class HystrixFallbackTest {
-    static final HotelInfo FALLBACK_HOTEL_INFO = HotelInfo.builder()
-            .refNum(888)
-            .name("Hilton")
-            .checkinDate(LocalDate.now().toString())
-            .checkoutDate(LocalDate.now().plusDays(2).toString())
-            .build();
 
     @Autowired
     private MyTripController myTripController;
@@ -49,6 +42,6 @@ public class HystrixFallbackTest {
                 break;
             }
         }
-        Assert.assertEquals(fallbackTripInfo.getHotelInfo(), FALLBACK_HOTEL_INFO);
+        Assert.assertEquals(fallbackTripInfo.getHotelInfo(), TestConstants.FALLBACK_HOTEL_INFO);
     }
 }

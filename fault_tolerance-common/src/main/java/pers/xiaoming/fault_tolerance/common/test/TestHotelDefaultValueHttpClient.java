@@ -6,9 +6,9 @@ import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 import java.io.IOException;
 
 @Slf4j
-public class TestAirlineDefaultValueHttpClient implements HttpClient {
+public class TestHotelDefaultValueHttpClient implements HttpClient {
     @Override
     public String get(long id) throws IOException {
-        return TestConstants.DEMO_AIRLINE_INFO_STRING;
+        return TestConstants.DEMO_HOTEL_INFO_STRING;
     }
 }
