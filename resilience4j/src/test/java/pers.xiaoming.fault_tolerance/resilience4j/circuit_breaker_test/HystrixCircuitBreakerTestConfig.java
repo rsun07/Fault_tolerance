@@ -28,14 +28,14 @@ public class HystrixCircuitBreakerTestConfig {
     @Primary
     @Bean
     @Qualifier("hotelRs4jCommandFactory")
-    public Rs4jCommandFactory getMockHotelHystrixCommandFactory() {
-        CircuitBreakerConfigManager configs = CircuitBreakerConfigManager.builder()
+    public Rs4jCommandFactory<String> getMockHotelHystrixCommandFactory() {
+        CircuitBreakerConfigManager<String> configs = CircuitBreakerConfigManager.<String>builder()
                 .failureThresholdPercentage(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .waitDuringOpenStateInMilliseconds(10000)
                 .ringBufferSizeInClosedState(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .ringBufferSizeInHalfOpenState(1)
                 .build();
-        return new Rs4jCommandFactory("Get_Hotel_Info", configs);
+        return new Rs4jCommandFactory<>("Get_Hotel_Info", configs);
     }
 
     @Primary

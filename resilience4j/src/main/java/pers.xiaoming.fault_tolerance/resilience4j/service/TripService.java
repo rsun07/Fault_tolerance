@@ -22,7 +22,7 @@ public class TripService {
         this.airlineService = airlineService;
     }
 
-    public TripInfo get(long id) throws Exception {
+    public TripInfo get(long id) throws IOException {
         String hotelInfoStr = hotelService.get(id);
         String airlineInfoStr = airlineService.get(id);
 

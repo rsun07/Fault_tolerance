@@ -9,17 +9,17 @@ import pers.xiaoming.fault_tolerance.resilience4j.rs4j.Rs4jCommandFactory;
 @Service
 public class HotelService {
     private HttpClient client;
-    private Rs4jCommandFactory rs4jCommandFactory;
+    private Rs4jCommandFactory<String> rs4jCommandFactory;
 
     @Autowired
     public HotelService(
             @Qualifier("hotelClient") HttpClient client,
-            @Qualifier("hotelRs4jCommandFactory") Rs4jCommandFactory rs4jCommandFactory) {
+            @Qualifier("hotelRs4jCommandFactory") Rs4jCommandFactory<String> rs4jCommandFactory) {
         this.client = client;
         this.rs4jCommandFactory = rs4jCommandFactory;
     }
 
-    public String get(long id) throws Exception {
-        return rs4jCommandFactory.execute(client, id);
+    public String get(long id) {
+        return rs4jCommandFactory.execute(() -> client.get(id));
     }
 }

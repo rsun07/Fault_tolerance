@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
 import pers.xiaoming.fault_tolerance.resilience4j.service.TripService;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/my_trip")
 public class MyTripController {
@@ -20,7 +22,7 @@ public class MyTripController {
     }
 
     @GetMapping
-    public TripInfo get(@RequestParam("trip_id") long id) throws Exception {
+    public TripInfo get(@RequestParam("trip_id") long id) throws IOException {
         return service.get(id);
     }
 }

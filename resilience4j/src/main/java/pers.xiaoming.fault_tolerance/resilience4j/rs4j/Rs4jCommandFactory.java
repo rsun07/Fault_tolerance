@@ -3,14 +3,23 @@ package pers.xiaoming.fault_tolerance.resilience4j.rs4j;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import io.vavr.control.Try;
-import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
+import lombok.extern.slf4j.Slf4j;
+import pers.xiaoming.fault_tolerance.common.backends.HttpGetInterface;
 
 import java.time.Duration;
 
-public class Rs4jCommandFactory {
+@Slf4j
+public class Rs4jCommandFactory<T> {
     private final CircuitBreaker circuitBreaker;
+    private final T fallback;
 
-    public Rs4jCommandFactory(String name, CircuitBreakerConfigManager circuitBreakerConfigManager) {
+    public Rs4jCommandFactory(String name, CircuitBreakerConfigManager<T> circuitBreakerConfigManager) {
+        if (circuitBreakerConfigManager.isFallbackEnabled()) {
+            this.fallback = circuitBreakerConfigManager.getFallback();
+        } else {
+            this.fallback = null;
+        }
+
         circuitBreakerConfigManager = circuitBreakerConfigManager.fillWithDefaults();
         CircuitBreakerConfig circuitBreakerConfig = CircuitBreakerConfig.custom()
                 .failureRateThreshold(circuitBreakerConfigManager.getFailureThresholdPercentage())
@@ -22,13 +31,20 @@ public class Rs4jCommandFactory {
         this.circuitBreaker = CircuitBreaker.of(name, circuitBreakerConfig);
     }
 
-    public String execute(HttpClient client, long id) {
-        Try<String> result = Try.of(
+    public T execute(HttpGetInterface<T> httpGetCall) {
+        Try<T> result = Try.of(
                 CircuitBreaker.decorateCheckedSupplier(
                         circuitBreaker,
-                        () -> client.get(id))
-        );
+                        httpGetCall::get
+                ));
 
-        return result.get();
+        if (fallback == null) {
+            return result.get();
+        } else {
+            return result.recover(throwable -> {
+                log.error(throwable.getMessage());
+                return fallback;
+            }).get();
+        }
     }
 }

@@ -25,7 +25,7 @@ public class Rs4jCrcuitBreakerTest {
     private MyTripController myTripController;
 
     @Test
-    public void testCircuitBreaker() throws Exception {
+    public void testCircuitBreaker() {
         int count = 0;
         String lastMessage = null;
 

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CircuitBreakerConfigManager {
+public class CircuitBreakerConfigManager<T> {
     private static final int DEFAULT_FAILURE_RATE_THRESHOLD_PERCENTAGE = 35;
     private static final int DEFAULT_WAIT_DURING_OPEN_STATE_IN_MILLISECONDS = 10000;
     private static final int DEFAULT_RING_BUFFER_SIZE_IN_HALF_OPEN_STATE = 10;
@@ -20,10 +20,11 @@ public class CircuitBreakerConfigManager {
     private int ringBufferSizeInHalfOpenState;
     private int ringBufferSizeInClosedState;
 
-    private int fallbackEnabled;
+    private boolean fallbackEnabled;
+    private T fallback;
 
-    public CircuitBreakerConfigManager fillWithDefaults() {
-        CircuitBreakerConfigManagerBuilder configsWithDefaultsBuilder = CircuitBreakerConfigManager.builder();
+    public CircuitBreakerConfigManager<T> fillWithDefaults() {
+        CircuitBreakerConfigManagerBuilder<T> configsWithDefaultsBuilder = CircuitBreakerConfigManager.<T>builder();
 
         if (failureThresholdPercentage > 0) {
             configsWithDefaultsBuilder.failureThresholdPercentage(failureThresholdPercentage);
@@ -47,6 +48,11 @@ public class CircuitBreakerConfigManager {
             configsWithDefaultsBuilder.ringBufferSizeInClosedState(ringBufferSizeInClosedState);
         } else {
             configsWithDefaultsBuilder.ringBufferSizeInClosedState(DEFAULT_RING_BUFFER_SIZE_IN_CLOSED_STATE);
+        }
+
+        if (fallbackEnabled) {
+            configsWithDefaultsBuilder.fallbackEnabled(fallbackEnabled);
+            configsWithDefaultsBuilder.fallback(fallback);
         }
 
         return configsWithDefaultsBuilder.build();
