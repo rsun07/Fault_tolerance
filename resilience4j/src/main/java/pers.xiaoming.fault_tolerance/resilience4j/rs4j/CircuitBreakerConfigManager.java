@@ -20,6 +20,8 @@ public class CircuitBreakerConfigManager {
     private int ringBufferSizeInHalfOpenState;
     private int ringBufferSizeInClosedState;
 
+    private int fallbackEnabled;
+
     public CircuitBreakerConfigManager fillWithDefaults() {
         CircuitBreakerConfigManagerBuilder configsWithDefaultsBuilder = CircuitBreakerConfigManager.builder();
 

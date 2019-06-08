@@ -7,12 +7,12 @@ import com.netflix.hystrix.HystrixObservableCommand;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 import rx.Observable;
 
-public class HystrixObservableCommandFactory {
+public class HystrixObservableCommandFactory<T> {
     private final HystrixObservableCommand.Setter hystrixObservableCommandSetter;
 
-    private final String fallback;
+    private final T fallback;
 
-    public HystrixObservableCommandFactory(String groupKey, String commandKey, HystrixOptionalConfigs configs) {
+    public HystrixObservableCommandFactory(String groupKey, String commandKey, HystrixOptionalConfigs<T> configs) {
         if (configs.isEnableFallback()) {
             this.fallback = configs.getFallback();
         } else {
@@ -40,15 +40,15 @@ public class HystrixObservableCommandFactory {
                 );
     }
 
-    public HystrixObservableCommand<String> createCommand(HttpClient client, long id) {
-        return new HystrixObservableCommand<String>(hystrixObservableCommandSetter) {
+    public HystrixObservableCommand<T> createCommand(HttpClient client, long id) {
+        return new HystrixObservableCommand<T>(hystrixObservableCommandSetter) {
             @Override
-            protected Observable<String> construct() {
+            protected Observable<T> construct() {
                 return Observable.fromCallable(() -> client.get(id));
             }
 
             @Override
-            protected Observable<String> resumeWithFallback() {
+            protected Observable<T> resumeWithFallback() {
                 return Observable.just(fallback);
             }
         };

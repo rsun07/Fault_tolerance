@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class HystrixOptionalConfigs {
+public class HystrixOptionalConfigs<T> {
     private static final int DEFAULT_CIRCUIT_BREAKER_ERROR_THRESHOLD_PERCENTAGE = 35;
     private static final int DEFAULT_CIRCUIT_BREAKER_REQUEST_VOLUME_THRESHOLD = 10;
     private static final int DEFAULT_CIRCUIT_BREAKER_WINDOW_IN_MILLISECONDS = 10000;
@@ -36,12 +36,12 @@ public class HystrixOptionalConfigs {
     private int timeoutInMillis;
 
     private boolean enableFallback;
-    private String fallback;
+    private T fallback;
 
     private HystrixCommandProperties.ExecutionIsolationStrategy isolationStrategy;
 
-    public HystrixOptionalConfigs fillWithDefaults() {
-        HystrixOptionalConfigsBuilder configsWithDefaultsBuilder = HystrixOptionalConfigs.builder();
+    public HystrixOptionalConfigs<T> fillWithDefaults() {
+        HystrixOptionalConfigsBuilder<T> configsWithDefaultsBuilder = HystrixOptionalConfigs.builder();
 
         if (circuitBreakerErrorThresholdPercentage > 0) {
             configsWithDefaultsBuilder.circuitBreakerErrorThresholdPercentage(circuitBreakerErrorThresholdPercentage);

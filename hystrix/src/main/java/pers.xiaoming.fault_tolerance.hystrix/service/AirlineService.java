@@ -23,7 +23,7 @@ public class AirlineService {
     }
 
     public String get(long id) {
-        return hystrixCommandFactory.createCommand(client, id).execute();
+        return hystrixCommandFactory.createCommand(() -> client.get(id)).execute();
     }
 
     public Future<String> getAsync(long id) {

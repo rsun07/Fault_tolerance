@@ -5,16 +5,16 @@ import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixCommandKey;
 import com.netflix.hystrix.HystrixCommandProperties;
 import com.netflix.hystrix.HystrixThreadPoolProperties;
-import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 
 import java.io.IOException;
+import java.util.function.Supplier;
 
-public class HystrixCommandFactory {
+public class HystrixCommandFactory<T> {
     private final HystrixCommand.Setter hystrixCommandSetter;
 
-    private final String fallback;
+    private final T fallback;
 
-    public HystrixCommandFactory(String groupKey, String commandKey, HystrixOptionalConfigs configs) {
+    public HystrixCommandFactory(String groupKey, String commandKey, HystrixOptionalConfigs<T> configs) {
         if (configs.isEnableFallback()) {
             this.fallback = configs.getFallback();
         } else {
@@ -54,15 +54,15 @@ public class HystrixCommandFactory {
         }
     }
 
-    public HystrixCommand<String> createCommand(HttpClient client, long id) {
-        return new HystrixCommand<String>(hystrixCommandSetter) {
+    public HystrixCommand<T> createCommand(Supplier<T> supplier) {
+        return new HystrixCommand<T>(hystrixCommandSetter) {
             @Override
-            protected String run() throws IOException {
-                return client.get(id);
+            protected T run() throws IOException {
+                return supplier.get();
             }
 
             @Override
-            protected String getFallback() {
+            protected T getFallback() {
                 return fallback;
             }
         };
