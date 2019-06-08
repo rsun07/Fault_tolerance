@@ -1,12 +1,19 @@
 package pers.xiaoming.fault_tolerance.resilience4j.rs4j;
 
+import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.Duration;
+
+/**
+ * Include generic type fallback and overwrite default values of original configs
+ *
+ * @param <T>
+ */
 @Builder
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class CircuitBreakerConfigManager<T> {
@@ -15,46 +22,27 @@ public class CircuitBreakerConfigManager<T> {
     private static final int DEFAULT_RING_BUFFER_SIZE_IN_HALF_OPEN_STATE = 10;
     private static final int DEFAULT_RING_BUFFER_SIZE_IN_CLOSED_STATE = 10;
 
-    private int failureThresholdPercentage;
-    private int waitDuringOpenStateInMilliseconds;
-    private int ringBufferSizeInHalfOpenState;
-    private int ringBufferSizeInClosedState;
+    private int failureThresholdPercentage = DEFAULT_FAILURE_RATE_THRESHOLD_PERCENTAGE;
+    private int waitDuringOpenStateInMilliseconds = DEFAULT_WAIT_DURING_OPEN_STATE_IN_MILLISECONDS;
+    private int ringBufferSizeInHalfOpenState = DEFAULT_RING_BUFFER_SIZE_IN_HALF_OPEN_STATE;
+    private int ringBufferSizeInClosedState = DEFAULT_RING_BUFFER_SIZE_IN_HALF_OPEN_STATE;
 
-    private boolean fallbackEnabled;
-    private T fallback;
+    @Getter
+    private boolean fallbackEnabled = false;
 
-    public CircuitBreakerConfigManager<T> fillWithDefaults() {
-        CircuitBreakerConfigManagerBuilder<T> configsWithDefaultsBuilder = CircuitBreakerConfigManager.<T>builder();
+    @Getter
+    private T fallback = null;
 
-        if (failureThresholdPercentage > 0) {
-            configsWithDefaultsBuilder.failureThresholdPercentage(failureThresholdPercentage);
-        } else {
-            configsWithDefaultsBuilder.failureThresholdPercentage(DEFAULT_FAILURE_RATE_THRESHOLD_PERCENTAGE);
-        }
+    public CircuitBreakerConfigManager<T> ofDefaults() {
+        return CircuitBreakerConfigManager.<T>builder().build();
+    }
 
-        if (waitDuringOpenStateInMilliseconds > 0) {
-            configsWithDefaultsBuilder.waitDuringOpenStateInMilliseconds(waitDuringOpenStateInMilliseconds);
-        } else {
-            configsWithDefaultsBuilder.waitDuringOpenStateInMilliseconds(DEFAULT_WAIT_DURING_OPEN_STATE_IN_MILLISECONDS);
-        }
-
-        if (ringBufferSizeInHalfOpenState > 0) {
-            configsWithDefaultsBuilder.ringBufferSizeInHalfOpenState(ringBufferSizeInHalfOpenState);
-        } else {
-            configsWithDefaultsBuilder.ringBufferSizeInHalfOpenState(DEFAULT_RING_BUFFER_SIZE_IN_HALF_OPEN_STATE);
-        }
-
-        if (ringBufferSizeInClosedState > 0) {
-            configsWithDefaultsBuilder.ringBufferSizeInClosedState(ringBufferSizeInClosedState);
-        } else {
-            configsWithDefaultsBuilder.ringBufferSizeInClosedState(DEFAULT_RING_BUFFER_SIZE_IN_CLOSED_STATE);
-        }
-
-        if (fallbackEnabled) {
-            configsWithDefaultsBuilder.fallbackEnabled(fallbackEnabled);
-            configsWithDefaultsBuilder.fallback(fallback);
-        }
-
-        return configsWithDefaultsBuilder.build();
+    public CircuitBreakerConfig getCircuitBreakerConfig() {
+        return CircuitBreakerConfig.custom()
+                .failureRateThreshold(failureThresholdPercentage)
+                .waitDurationInOpenState(Duration.ofMillis(waitDuringOpenStateInMilliseconds))
+                .ringBufferSizeInHalfOpenState(ringBufferSizeInHalfOpenState)
+                .ringBufferSizeInClosedState(ringBufferSizeInClosedState)
+                .build();
     }
 }

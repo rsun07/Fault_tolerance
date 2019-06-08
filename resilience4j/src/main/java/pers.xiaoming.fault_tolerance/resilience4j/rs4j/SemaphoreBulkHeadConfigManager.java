@@ -3,11 +3,9 @@ package pers.xiaoming.fault_tolerance.resilience4j.rs4j;
 import io.github.resilience4j.bulkhead.BulkheadConfig;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Builder
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class SemaphoreBulkHeadConfigManager {
