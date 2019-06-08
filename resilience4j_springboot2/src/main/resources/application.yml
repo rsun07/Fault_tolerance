@@ -7,6 +7,20 @@ backends:
     hotel-endpoint: localhost:9090
     airline-endpoint: localhost:7070
 
-#logging:
-#  pattern:
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      failureRateThreshold: 50
+      waitInterval: 10000
+      ringBufferSizeInClosedState: 10
+      ringBufferSizeInHalfOpenState: 2
+
+  backends:
+    hotel_backend:
+      baseConfig: default
+    airline_backend:
+      failureRateThreshold: 40
+      waitInterval: 5000
+      ringBufferSizeInClosedState: 10
+      ringBufferSizeInHalfOpenState: 2
 

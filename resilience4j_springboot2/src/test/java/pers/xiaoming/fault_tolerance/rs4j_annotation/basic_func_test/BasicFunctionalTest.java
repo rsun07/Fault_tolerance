@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.resilience4j.basic_func_test;
+package pers.xiaoming.fault_tolerance.rs4j_annotation.basic_func_test;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,8 +9,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
 import pers.xiaoming.fault_tolerance.common.test.TestConstants;
-import pers.xiaoming.fault_tolerance.resilience4j.Application;
-import pers.xiaoming.fault_tolerance.resilience4j.controller.MyTripController;
+import pers.xiaoming.fault_tolerance.rs4j_annotation.Application;
+import pers.xiaoming.fault_tolerance.rs4j_annotation.controller.MyTripController;
 
 @ActiveProfiles("rs4j-basic-func-test")
 @RunWith(SpringJUnit4ClassRunner.class)

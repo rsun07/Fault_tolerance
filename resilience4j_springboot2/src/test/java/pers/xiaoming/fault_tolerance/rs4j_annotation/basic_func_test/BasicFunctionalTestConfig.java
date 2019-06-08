@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.resilience4j.basic_func_test;
+package pers.xiaoming.fault_tolerance.rs4j_annotation.basic_func_test;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

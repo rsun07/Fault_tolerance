@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.resilience4j;
+package pers.xiaoming.fault_tolerance.rs4j_annotation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.resilience4j.circuit_breaker_test;
+package pers.xiaoming.fault_tolerance.rs4j_annotation.circuit_breaker_test;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import pers.xiaoming.fault_tolerance.resilience4j.Application;
-import pers.xiaoming.fault_tolerance.resilience4j.controller.MyTripController;
+import pers.xiaoming.fault_tolerance.rs4j_annotation.Application;
+import pers.xiaoming.fault_tolerance.rs4j_annotation.controller.MyTripController;
 
 @ActiveProfiles("rs4j-circuit-breaker-test")
 @RunWith(SpringJUnit4ClassRunner.class)

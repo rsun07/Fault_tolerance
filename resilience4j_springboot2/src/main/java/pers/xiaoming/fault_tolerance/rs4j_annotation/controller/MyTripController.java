@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.resilience4j.controller;
+package pers.xiaoming.fault_tolerance.rs4j_annotation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
-import pers.xiaoming.fault_tolerance.resilience4j.service.TripService;
+import pers.xiaoming.fault_tolerance.rs4j_annotation.service.TripService;
 
 import java.io.IOException;
 

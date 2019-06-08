@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.resilience4j.fallback_test;
+package pers.xiaoming.fault_tolerance.rs4j_annotation.fallback_test;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -10,8 +10,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
 import pers.xiaoming.fault_tolerance.common.test.TestConstants;
-import pers.xiaoming.fault_tolerance.resilience4j.Application;
-import pers.xiaoming.fault_tolerance.resilience4j.controller.MyTripController;
+import pers.xiaoming.fault_tolerance.rs4j_annotation.Application;
+import pers.xiaoming.fault_tolerance.rs4j_annotation.controller.MyTripController;
 
 import java.io.IOException;
 

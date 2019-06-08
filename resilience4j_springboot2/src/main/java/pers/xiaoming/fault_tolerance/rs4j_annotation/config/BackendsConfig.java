@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.resilience4j.config;
+package pers.xiaoming.fault_tolerance.rs4j_annotation.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;

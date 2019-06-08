@@ -10,9 +10,34 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>pers.xiaoming.fault_tolerance</groupId>
     <artifactId>resilience4j_springboot2</artifactId>
-    <version>1.0-SNAPSHOT</version>
 
-    
+    <properties>
+        <resilience4j.version>0.15.0</resilience4j.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>pers.xiaoming.fault_tolerance</groupId>
+            <artifactId>fault_tolerance-common</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-circuitbreaker</artifactId>
+            <version>${resilience4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-bulkhead</artifactId>
+            <version>${resilience4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-spring-boot</artifactId>
+            <version>${resilience4j.version}</version>
+        </dependency>
+    </dependencies>
 </project>

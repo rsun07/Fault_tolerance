@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.resilience4j.service;
+package pers.xiaoming.fault_tolerance.rs4j_annotation.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
