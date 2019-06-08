@@ -13,7 +13,7 @@ import java.time.Duration;
  *
  * @param <T>
  */
-@Builder
+@Builder(toBuilder = true)
 @AllArgsConstructor
 public class CircuitBreakerConfigManager<T> {
     private static final int DEFAULT_FAILURE_RATE_THRESHOLD_PERCENTAGE = 35;
@@ -36,6 +36,10 @@ public class CircuitBreakerConfigManager<T> {
 
     public static CircuitBreakerConfigManager ofDefaults() {
         return new CircuitBreakerConfigManager();
+    }
+
+    public static <T> CircuitBreakerConfigManagerBuilder getBuilderWithDefaultValues() {
+        return new CircuitBreakerConfigManager<T>().toBuilder();
     }
 
     public CircuitBreakerConfig getCircuitBreakerConfig() {

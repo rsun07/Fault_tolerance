@@ -9,9 +9,8 @@ import com.netflix.hystrix.HystrixThreadPoolProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@Builder
+@Builder(toBuilder = true)
 @AllArgsConstructor
 public class HystrixConfigsManager<T> {
     private static final int DEFAULT_CIRCUIT_BREAKER_ERROR_THRESHOLD_PERCENTAGE = 35;
@@ -54,6 +53,10 @@ public class HystrixConfigsManager<T> {
         return new HystrixConfigsManager();
     }
 
+    public static <T> HystrixConfigsManagerBuilder<T> getBuilderWithDefaultValues() {
+        return new HystrixConfigsManager<T>().toBuilder();
+    }
+
     public HystrixCommand.Setter getHystrixCommandSetter(String groupKey, String commandKey) {
         HystrixCommand.Setter setter = HystrixCommand.Setter
                 .withGroupKey(HystrixCommandGroupKey.Factory.asKey(groupKey))
@@ -67,7 +70,7 @@ public class HystrixConfigsManager<T> {
                         .withExecutionIsolationSemaphoreMaxConcurrentRequests(semaphoreMaxConcurrentRequests)
                         .withFallbackEnabled(enableFallback));
 
-        if (isolationStrategy.equals(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)) {
+        if (HystrixCommandProperties.ExecutionIsolationStrategy.THREAD.equals(isolationStrategy)) {
             setter.andThreadPoolPropertiesDefaults(HystrixThreadPoolProperties.Setter()
                     .withCoreSize(threadPoolCoreSize)
                     .withMaxQueueSize(threadPoolMaxSize)

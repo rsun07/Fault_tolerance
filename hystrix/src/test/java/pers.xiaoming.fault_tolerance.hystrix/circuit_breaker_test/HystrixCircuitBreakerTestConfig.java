@@ -29,7 +29,7 @@ public class HystrixCircuitBreakerTestConfig {
     @Bean
     @Qualifier("hotelHystrixCommandFactory")
     public HystrixCommandFactory<String> getMockHotelHystrixCommandFactory() {
-        HystrixConfigsManager<String> configs = HystrixConfigsManager.<String>builder()
+        HystrixConfigsManager<String> configs = HystrixConfigsManager.<String>getBuilderWithDefaultValues()
                 .circuitBreakerErrorThresholdPercentage(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .circuitBreakerRequestVolumeThreshold(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .circuitBreakerSleepWindowInMillis(100)

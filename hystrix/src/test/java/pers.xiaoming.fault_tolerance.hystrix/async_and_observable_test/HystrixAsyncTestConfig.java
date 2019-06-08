@@ -31,7 +31,7 @@ public class HystrixAsyncTestConfig {
         return new AsyncTestAirlineHttpClient(HystrixAsyncTest.DEFAULT_SLEEP_TIME_IN_MILLIS);
     }
 
-    private HystrixConfigsManager<String> hystrixConfigsManager = HystrixConfigsManager.<String>builder()
+    private HystrixConfigsManager<String> hystrixConfigsManager = HystrixConfigsManager.<String>getBuilderWithDefaultValues()
             .timeoutInMillis(HystrixAsyncTest.DEFAULT_SLEEP_TIME_IN_MILLIS * 3)
             .build();
 
