@@ -13,7 +13,7 @@ import pers.xiaoming.fault_tolerance.resilience4j.rs4j.Rs4jCommandFactory;
 
 @Profile("rs4j-circuit-breaker-test")
 @Configuration
-public class HystrixCircuitBreakerTestConfig {
+public class Rs4jCircuitBreakerTestConfig {
     static final int LOWER_ERROR_THRESHOLD_FOR_TEST = 5;
 
     // Indicates that a bean should be given preference when multiple candidates

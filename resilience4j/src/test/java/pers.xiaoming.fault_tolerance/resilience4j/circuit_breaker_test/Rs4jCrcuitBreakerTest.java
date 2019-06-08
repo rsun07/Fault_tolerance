@@ -44,6 +44,6 @@ public class Rs4jCrcuitBreakerTest {
 
         Assert.assertEquals(SHORT_CICUIT_MSG, lastMessage);
         Assert.assertTrue(count >=
-                TOTAL_ROUNDS * (1 - HystrixCircuitBreakerTestConfig.LOWER_ERROR_THRESHOLD_FOR_TEST));
+                TOTAL_ROUNDS * (1 - Rs4jCircuitBreakerTestConfig.LOWER_ERROR_THRESHOLD_FOR_TEST));
     }
 }

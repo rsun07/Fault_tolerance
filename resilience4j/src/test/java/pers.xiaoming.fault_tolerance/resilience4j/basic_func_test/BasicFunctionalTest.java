@@ -1,6 +1,5 @@
 package pers.xiaoming.fault_tolerance.resilience4j.basic_func_test;
 
-import lombok.Getter;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,50 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import pers.xiaoming.fault_tolerance.common.entity.AirlineInfo;
-import pers.xiaoming.fault_tolerance.common.entity.HotelInfo;
 import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
+import pers.xiaoming.fault_tolerance.common.test.TestConstants;
 import pers.xiaoming.fault_tolerance.resilience4j.Application;
 import pers.xiaoming.fault_tolerance.resilience4j.controller.MyTripController;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @ActiveProfiles("rs4j-basic-func-test")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 public class BasicFunctionalTest {
-    private static final HotelInfo DEFAULT_HOTEL_INFO = HotelInfo.builder()
-            .refNum(101)
-            .name("Hyatt")
-            .checkinDate(LocalDate.now().toString())
-            .checkoutDate(LocalDate.now().plusDays(1).toString())
-            .build();
-
-    private static AirlineInfo DEFAULT_AIRLINE_INFO = AirlineInfo.builder()
-            .refNum(101)
-            .name("AA")
-            .departureAirportName("IAD")
-            .arrivalAirportName("LAX")
-            .departureTime(LocalDateTime.now().toString())
-            .build();
-
-    @Getter
-    private static final int DEFAULT_TRIP_ID = 888;
-
-    @Getter
-    private static final TripInfo DEFAULT_TRIP_INFO = TripInfo.builder()
-            .id(DEFAULT_TRIP_ID)
-            .hotelInfo(DEFAULT_HOTEL_INFO)
-            .airlineInfo(DEFAULT_AIRLINE_INFO)
-            .build();
-
     @Autowired
     private MyTripController myTripController;
 
     @Test
     public void testSyncGet() throws Exception {
-        TripInfo info = myTripController.get(DEFAULT_TRIP_ID);
-        Assert.assertEquals(info, DEFAULT_TRIP_INFO);
+        TripInfo info = myTripController.get(TestConstants.DEMO_TRIP_ID);
+        Assert.assertEquals(info, TestConstants.DEMO_TRIP_INFO);
     }
 }
