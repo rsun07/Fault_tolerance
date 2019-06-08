@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.hystrix.fallback_test;
+package pers.xiaoming.fault_tolerance.resilience4j.fallback_test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,26 +10,27 @@ import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 import pers.xiaoming.fault_tolerance.common.test.FallbackTestHotelHttpClient;
 import pers.xiaoming.fault_tolerance.common.test.TestAirlineDefaultValueHttpClient;
 import pers.xiaoming.fault_tolerance.common.test.TestConstants;
-import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixCommandFactory;
-import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixOptionalConfigs;
+import pers.xiaoming.fault_tolerance.resilience4j.rs4j.CircuitBreakerConfigManager;
+import pers.xiaoming.fault_tolerance.resilience4j.rs4j.Rs4jCommandFactory;
 
-@Profile("hystrix-fallback-test")
+@Profile("rs4j-fallback-test")
 @Configuration
-public class HystrixFallbackTestConfig {
+public class Rs4jFallbackTestConfig {
     private static final int LOWER_ERROR_THRESHOLD_FOR_TEST = 5;
 
     @Primary
     @Bean
-    @Qualifier("hotelHystrixCommandFactory")
-    public HystrixCommandFactory<String> getMockHotelHystrixCommandFactory() throws JsonProcessingException {
-        HystrixOptionalConfigs<String> configs = HystrixOptionalConfigs.<String>builder()
-                .circuitBreakerErrorThresholdPercentage(LOWER_ERROR_THRESHOLD_FOR_TEST)
-                .circuitBreakerRequestVolumeThreshold(LOWER_ERROR_THRESHOLD_FOR_TEST)
-                .circuitBreakerSleepWindowInMillis(100)
-                .enableFallback(true)
+    @Qualifier("hotelRs4jCommandFactory")
+    public Rs4jCommandFactory<String> getMockHotelRs4jCommandFactory() throws JsonProcessingException {
+        CircuitBreakerConfigManager<String> configs = CircuitBreakerConfigManager.<String>builder()
+                .failureThresholdPercentage(LOWER_ERROR_THRESHOLD_FOR_TEST)
+                .waitDuringOpenStateInMilliseconds(10000)
+                .ringBufferSizeInClosedState(LOWER_ERROR_THRESHOLD_FOR_TEST)
+                .ringBufferSizeInHalfOpenState(1)
+                .fallbackEnabled(true)
                 .fallback(TestConstants.FALLBACK_HOTEL_INFO_STRING)
                 .build();
-        return new HystrixCommandFactory<>("Hotel", "Get_Hotel_Info_Test", configs);
+        return new Rs4jCommandFactory<>("Get_Hotel_Info", configs);
     }
 
     // Indicates that a bean should be given preference when multiple candidates

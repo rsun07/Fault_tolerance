@@ -28,7 +28,7 @@ public class Rs4jCircuitBreakerTestConfig {
     @Primary
     @Bean
     @Qualifier("hotelRs4jCommandFactory")
-    public Rs4jCommandFactory<String> getMockHotelHystrixCommandFactory() {
+    public Rs4jCommandFactory<String> getMockHotelRs4jCommandFactory() {
         CircuitBreakerConfigManager<String> configs = CircuitBreakerConfigManager.<String>builder()
                 .failureThresholdPercentage(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .waitDuringOpenStateInMilliseconds(10000)

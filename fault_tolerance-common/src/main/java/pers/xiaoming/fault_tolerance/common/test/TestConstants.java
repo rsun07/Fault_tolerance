@@ -44,11 +44,13 @@ public class TestConstants {
 
     public static String DEMO_HOTEL_INFO_STRING;
     public static String DEMO_AIRLINE_INFO_STRING;
+    public static String FALLBACK_HOTEL_INFO_STRING;
 
     static {
         try {
             DEMO_HOTEL_INFO_STRING = OBJECT_MAPPER.writeValueAsString(DEMO_HOTEL_INFO);
             DEMO_AIRLINE_INFO_STRING = OBJECT_MAPPER.writeValueAsString(DEMO_AIRLINE_INFO);
+            FALLBACK_HOTEL_INFO_STRING = OBJECT_MAPPER.writeValueAsString(FALLBACK_HOTEL_INFO);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
