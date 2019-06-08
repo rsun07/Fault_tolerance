@@ -14,7 +14,6 @@ import java.time.Duration;
  * @param <T>
  */
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class CircuitBreakerConfigManager<T> {
     private static final int DEFAULT_FAILURE_RATE_THRESHOLD_PERCENTAGE = 35;
@@ -27,14 +26,16 @@ public class CircuitBreakerConfigManager<T> {
     private int ringBufferSizeInHalfOpenState = DEFAULT_RING_BUFFER_SIZE_IN_HALF_OPEN_STATE;
     private int ringBufferSizeInClosedState = DEFAULT_RING_BUFFER_SIZE_IN_HALF_OPEN_STATE;
 
-    @Getter
     private boolean fallbackEnabled = false;
 
     @Getter
     private T fallback = null;
 
-    public CircuitBreakerConfigManager<T> ofDefaults() {
-        return CircuitBreakerConfigManager.<T>builder().build();
+    private CircuitBreakerConfigManager() {
+    }
+
+    public static CircuitBreakerConfigManager ofDefaults() {
+        return new CircuitBreakerConfigManager();
     }
 
     public CircuitBreakerConfig getCircuitBreakerConfig() {

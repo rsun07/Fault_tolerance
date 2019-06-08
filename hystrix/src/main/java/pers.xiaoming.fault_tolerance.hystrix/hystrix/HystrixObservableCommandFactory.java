@@ -1,8 +1,5 @@
 package pers.xiaoming.fault_tolerance.hystrix.hystrix;
 
-import com.netflix.hystrix.HystrixCommandGroupKey;
-import com.netflix.hystrix.HystrixCommandKey;
-import com.netflix.hystrix.HystrixCommandProperties;
 import com.netflix.hystrix.HystrixObservableCommand;
 import pers.xiaoming.fault_tolerance.common.backends.HttpGetInterface;
 import rx.Observable;
@@ -12,32 +9,10 @@ public class HystrixObservableCommandFactory<T> {
 
     private final T fallback;
 
-    public HystrixObservableCommandFactory(String groupKey, String commandKey, HystrixOptionalConfigs<T> configs) {
-        if (configs.isEnableFallback()) {
-            this.fallback = configs.getFallback();
-        } else {
-            this.fallback = null;
-        }
+    public HystrixObservableCommandFactory(String groupKey, String commandKey, HystrixConfigsManager<T> configsManager) {
+        this.fallback = configsManager.getFallback();
 
-        configs = configs.fillWithDefaults();
-        this.hystrixObservableCommandSetter = HystrixObservableCommand.Setter
-                .withGroupKey(HystrixCommandGroupKey.Factory.asKey(groupKey))
-                .andCommandKey(HystrixCommandKey.Factory.asKey(commandKey))
-                .andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
-                        .withCircuitBreakerErrorThresholdPercentage(
-                                configs.getCircuitBreakerErrorThresholdPercentage())
-                        .withCircuitBreakerRequestVolumeThreshold(
-                                configs.getCircuitBreakerRequestVolumeThreshold())
-                        .withCircuitBreakerSleepWindowInMilliseconds(
-                                configs.getCircuitBreakerSleepWindowInMillis())
-                        .withExecutionTimeoutInMilliseconds(configs.getTimeoutInMillis())
-                        .withMetricsHealthSnapshotIntervalInMilliseconds(
-                                configs.getCircuitBreakerSleepWindowInMillis())
-                        .withExecutionIsolationSemaphoreMaxConcurrentRequests(
-                                configs.getSemaphoreMaxConcurrentRequests()
-                        )
-                        .withFallbackEnabled(configs.isEnableFallback())
-                );
+        this.hystrixObservableCommandSetter = configsManager.getHystrixObservableCommandSetter(groupKey, commandKey);
     }
 
     public HystrixObservableCommand<T> createCommand(HttpGetInterface<T> httpGetFunc) {

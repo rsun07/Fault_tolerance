@@ -12,12 +12,7 @@ public class Rs4jCommandFactory<T> {
 
     public Rs4jCommandFactory(String name,
                               CircuitBreakerConfigManager<T> circuitBreakerConfigManager) {
-
-        if (circuitBreakerConfigManager.isFallbackEnabled()) {
-            this.fallback = circuitBreakerConfigManager.getFallback();
-        } else {
-            this.fallback = null;
-        }
+        this.fallback = circuitBreakerConfigManager.getFallback();
 
         this.circuitBreaker = CircuitBreaker.of(name,
                 circuitBreakerConfigManager.getCircuitBreakerConfig());

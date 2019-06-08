@@ -10,7 +10,7 @@ import pers.xiaoming.fault_tolerance.common.test.AsyncTestAirlineHttpClient;
 import pers.xiaoming.fault_tolerance.common.test.AsyncTestHotelHttpClient;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixCommandFactory;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixObservableCommandFactory;
-import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixOptionalConfigs;
+import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixConfigsManager;
 
 @Profile("hystrix-async-test")
 @Configuration
@@ -31,7 +31,7 @@ public class HystrixAsyncTestConfig {
         return new AsyncTestAirlineHttpClient(HystrixAsyncTest.DEFAULT_SLEEP_TIME_IN_MILLIS);
     }
 
-    private HystrixOptionalConfigs<String> hystrixOptionalConfigs = HystrixOptionalConfigs.<String>builder()
+    private HystrixConfigsManager<String> hystrixConfigsManager = HystrixConfigsManager.<String>builder()
             .timeoutInMillis(HystrixAsyncTest.DEFAULT_SLEEP_TIME_IN_MILLIS * 3)
             .build();
 
@@ -39,27 +39,27 @@ public class HystrixAsyncTestConfig {
     @Bean
     @Qualifier("hotelHystrixCommandFactory")
     public HystrixCommandFactory<String> getMockHotelHystrixCommandFactory() {
-        return new HystrixCommandFactory<>("Hotel", "Get_Hotel_Info", hystrixOptionalConfigs);
+        return new HystrixCommandFactory<>("Hotel", "Get_Hotel_Info", hystrixConfigsManager);
     }
 
     @Primary
     @Bean
     @Qualifier("airlineHystrixCommandFactory")
     public HystrixCommandFactory<String> getMockAirlineHystrixCommandFactory() {
-        return new HystrixCommandFactory<>("Airline", "Get_Airline_Info", hystrixOptionalConfigs);
+        return new HystrixCommandFactory<>("Airline", "Get_Airline_Info", hystrixConfigsManager);
     }
 
     @Primary
     @Bean
     @Qualifier("hotelHystrixObservableCommandFactory")
     public HystrixObservableCommandFactory<String> getMockHotelHystrixObservableCommandFactory() {
-        return new HystrixObservableCommandFactory<>("Hotel", "Get_Hotel_Info_Observable", hystrixOptionalConfigs);
+        return new HystrixObservableCommandFactory<>("Hotel", "Get_Hotel_Info_Observable", hystrixConfigsManager);
     }
 
     @Primary
     @Bean
     @Qualifier("airlineHystrixObservableCommandFactory")
     public HystrixObservableCommandFactory getMockAirlineHystrixObservableCommandFactory() {
-        return new HystrixObservableCommandFactory<>("Airline", "Get_Airline_Info_Observable", hystrixOptionalConfigs);
+        return new HystrixObservableCommandFactory<>("Airline", "Get_Airline_Info_Observable", hystrixConfigsManager);
     }
 }

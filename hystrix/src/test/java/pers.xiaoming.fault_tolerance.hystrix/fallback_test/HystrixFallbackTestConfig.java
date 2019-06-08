@@ -11,7 +11,7 @@ import pers.xiaoming.fault_tolerance.common.test.FallbackTestHotelHttpClient;
 import pers.xiaoming.fault_tolerance.common.test.TestAirlineDefaultValueHttpClient;
 import pers.xiaoming.fault_tolerance.common.test.TestConstants;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixCommandFactory;
-import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixOptionalConfigs;
+import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixConfigsManager;
 
 @Profile("hystrix-fallback-test")
 @Configuration
@@ -22,7 +22,7 @@ public class HystrixFallbackTestConfig {
     @Bean
     @Qualifier("hotelHystrixCommandFactory")
     public HystrixCommandFactory<String> getMockHotelHystrixCommandFactory() throws JsonProcessingException {
-        HystrixOptionalConfigs<String> configs = HystrixOptionalConfigs.<String>builder()
+        HystrixConfigsManager<String> configs = HystrixConfigsManager.<String>builder()
                 .circuitBreakerErrorThresholdPercentage(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .circuitBreakerRequestVolumeThreshold(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .circuitBreakerSleepWindowInMillis(100)

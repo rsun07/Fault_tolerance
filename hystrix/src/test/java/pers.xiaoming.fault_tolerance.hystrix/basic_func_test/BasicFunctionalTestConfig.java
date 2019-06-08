@@ -1,6 +1,5 @@
 package pers.xiaoming.fault_tolerance.hystrix.basic_func_test;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,8 +12,6 @@ import pers.xiaoming.fault_tolerance.common.test.TestHotelDefaultValueHttpClient
 @Profile("hystrix-basic-func-test")
 @Configuration
 public class BasicFunctionalTestConfig {
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-
     // Indicates that a bean should be given preference when multiple candidates
     // are qualified to autowire a single-valued dependency.
     @Primary

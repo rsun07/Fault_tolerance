@@ -9,7 +9,7 @@ import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 import pers.xiaoming.fault_tolerance.common.test.CircuitBreakerTestHotelHttpClient;
 import pers.xiaoming.fault_tolerance.common.test.TestAirlineDefaultValueHttpClient;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixCommandFactory;
-import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixOptionalConfigs;
+import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixConfigsManager;
 
 @Profile("hystrix-circuit-breaker-test")
 @Configuration
@@ -29,7 +29,7 @@ public class HystrixCircuitBreakerTestConfig {
     @Bean
     @Qualifier("hotelHystrixCommandFactory")
     public HystrixCommandFactory<String> getMockHotelHystrixCommandFactory() {
-        HystrixOptionalConfigs<String> configs = HystrixOptionalConfigs.<String>builder()
+        HystrixConfigsManager<String> configs = HystrixConfigsManager.<String>builder()
                 .circuitBreakerErrorThresholdPercentage(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .circuitBreakerRequestVolumeThreshold(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .circuitBreakerSleepWindowInMillis(100)
