@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.hystrix.circuit_breaker_test;
+package pers.xiaoming.fault_tolerance.common.test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
@@ -7,7 +7,7 @@ import pers.xiaoming.fault_tolerance.common.entity.AirlineInfo;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-public class HystrixCircuitBreakerTestAirlineHttpClient implements HttpClient {
+public class CircuitBreakerTestAirlineHttpClient implements HttpClient {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     private static AirlineInfo defaultAirlineInfo = AirlineInfo.builder()

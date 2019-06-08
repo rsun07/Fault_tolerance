@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.hystrix.circuit_breaker_test;
+package pers.xiaoming.fault_tolerance.resilience4j.circuit_breaker_test;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Profile;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 import pers.xiaoming.fault_tolerance.common.test.CircuitBreakerTestAirlineHttpClient;
 import pers.xiaoming.fault_tolerance.common.test.CircuitBreakerTestHotelHttpClient;
-import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixCommandFactory;
-import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixOptionalConfigs;
+import pers.xiaoming.fault_tolerance.resilience4j.rs4j.CircuitBreakerConfigManager;
+import pers.xiaoming.fault_tolerance.resilience4j.rs4j.Rs4jCommandFactory;
 
-@Profile("hystrix-circuit-breaker-test")
+@Profile("rs4j-circuit-breaker-test")
 @Configuration
 public class HystrixCircuitBreakerTestConfig {
     static final int LOWER_ERROR_THRESHOLD_FOR_TEST = 5;
@@ -27,14 +27,15 @@ public class HystrixCircuitBreakerTestConfig {
 
     @Primary
     @Bean
-    @Qualifier("hotelHystrixCommandFactory")
-    public HystrixCommandFactory getMockHotelHystrixCommandFactory() {
-        HystrixOptionalConfigs configs = HystrixOptionalConfigs.builder()
-                .circuitBreakerErrorThresholdPercentage(LOWER_ERROR_THRESHOLD_FOR_TEST)
-                .circuitBreakerRequestVolumeThreshold(LOWER_ERROR_THRESHOLD_FOR_TEST)
-                .circuitBreakerSleepWindowInMillis(100)
+    @Qualifier("hotelRs4jCommandFactory")
+    public Rs4jCommandFactory getMockHotelHystrixCommandFactory() {
+        CircuitBreakerConfigManager configs = CircuitBreakerConfigManager.builder()
+                .failureThresholdPercentage(LOWER_ERROR_THRESHOLD_FOR_TEST)
+                .waitDuringOpenStateInMilliseconds(10000)
+                .ringBufferSizeInClosedState(LOWER_ERROR_THRESHOLD_FOR_TEST)
+                .ringBufferSizeInHalfOpenState(1)
                 .build();
-        return new HystrixCommandFactory("Hotel", "Get_Hotel_Info", configs);
+        return new Rs4jCommandFactory("Get_Hotel_Info", configs);
     }
 
     @Primary
