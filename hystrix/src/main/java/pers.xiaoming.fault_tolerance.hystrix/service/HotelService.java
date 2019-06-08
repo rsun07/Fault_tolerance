@@ -12,29 +12,29 @@ import java.util.concurrent.Future;
 @Service
 public class HotelService {
     private HttpClient client;
-    private HystrixCommandFactory hystrixCommandFactory;
+    private HystrixCommandFactory<String> hystrixCommandFactory;
 
     @Autowired
     public HotelService(
             @Qualifier("hotelClient") HttpClient client,
-            @Qualifier("hotelHystrixCommandFactory") HystrixCommandFactory hystrixCommandFactory) {
+            @Qualifier("hotelHystrixCommandFactory") HystrixCommandFactory<String> hystrixCommandFactory) {
         this.client = client;
         this.hystrixCommandFactory = hystrixCommandFactory;
     }
 
     public String get(long id) {
-        return hystrixCommandFactory.createCommand(client, id).execute();
+        return hystrixCommandFactory.createCommand(() -> client.get(id)).execute();
     }
 
     public Future<String> getAsync(long id) {
-        return hystrixCommandFactory.createCommand(client, id).queue();
+        return hystrixCommandFactory.createCommand(() -> client.get(id)).queue();
     }
 
     public Observable<String> getHotObservable(long id) {
-        return hystrixCommandFactory.createCommand(client, id).observe();
+        return hystrixCommandFactory.createCommand(() -> client.get(id)).observe();
     }
 
     public Observable<String> getColdObservable(long id) {
-        return hystrixCommandFactory.createCommand(client, id).toObservable();
+        return hystrixCommandFactory.createCommand(() -> client.get(id)).toObservable();
     }
 }

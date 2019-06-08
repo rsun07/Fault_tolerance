@@ -5,6 +5,7 @@ import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixCommandKey;
 import com.netflix.hystrix.HystrixCommandProperties;
 import com.netflix.hystrix.HystrixThreadPoolProperties;
+import pers.xiaoming.fault_tolerance.common.backends.HttpGetInterface;
 
 import java.io.IOException;
 import java.util.function.Supplier;
@@ -54,7 +55,7 @@ public class HystrixCommandFactory<T> {
         }
     }
 
-    public HystrixCommand<T> createCommand(Supplier<T> supplier) {
+    public HystrixCommand<T> createCommand(HttpGetInterface<T> supplier) {
         return new HystrixCommand<T>(hystrixCommandSetter) {
             @Override
             protected T run() throws IOException {
