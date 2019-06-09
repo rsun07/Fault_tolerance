@@ -17,7 +17,7 @@ public class HystrixConfigsManager<T> {
     private static final int DEFAULT_CIRCUIT_BREAKER_REQUEST_VOLUME_THRESHOLD = 10;
     private static final int DEFAULT_CIRCUIT_BREAKER_WINDOW_IN_MILLISECONDS = 10000;
 
-    private static final int DEFAULT_TIMEOUT_IN_MILLISECONDS = 100;
+    private static final int DEFAULT_TIMEOUT_IN_MILLISECONDS = 1000;
 
     private static final int DEFAULT_SEMAPHORE_MAX_CONCURRENT_REQUESTS = 512;
 

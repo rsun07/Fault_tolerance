@@ -14,7 +14,7 @@ import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixConfigsManager;
 @Profile("hystrix-circuit-breaker-test")
 @Configuration
 public class HystrixCircuitBreakerTestConfig {
-    static final int LOWER_ERROR_THRESHOLD_FOR_TEST = 5;
+    private static final int LOWER_ERROR_THRESHOLD_FOR_TEST = 5;
 
     // Indicates that a bean should be given preference when multiple candidates
     // are qualified to autowire a single-valued dependency.
@@ -22,7 +22,7 @@ public class HystrixCircuitBreakerTestConfig {
     @Bean
     @Qualifier("hotelClient")
     public HttpClient getMockHotelClient() {
-        return new CircuitBreakerTestHotelHttpClient(LOWER_ERROR_THRESHOLD_FOR_TEST);
+        return new CircuitBreakerTestHotelHttpClient(HystrixCircuitBreakerTest.TOTAL_ROUNDS);
     }
 
     @Primary
@@ -32,7 +32,7 @@ public class HystrixCircuitBreakerTestConfig {
         HystrixConfigsManager<String> configs = HystrixConfigsManager.<String>getBuilderWithDefaultValues()
                 .circuitBreakerErrorThresholdPercentage(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .circuitBreakerRequestVolumeThreshold(LOWER_ERROR_THRESHOLD_FOR_TEST)
-                .circuitBreakerSleepWindowInMillis(100)
+                .circuitBreakerSleepWindowInMillis(50)
                 .build();
         return new HystrixCommandFactory<>("Hotel", "Get_Hotel_Info", configs);
     }
