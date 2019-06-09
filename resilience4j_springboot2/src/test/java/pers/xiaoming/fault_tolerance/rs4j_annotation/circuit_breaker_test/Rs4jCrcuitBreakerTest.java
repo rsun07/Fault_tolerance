@@ -12,14 +12,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pers.xiaoming.fault_tolerance.rs4j_annotation.Application;
 import pers.xiaoming.fault_tolerance.rs4j_annotation.controller.MyTripController;
 
-@ActiveProfiles("rs4j-circuit-breaker-test")
+@ActiveProfiles("rs4j-annotation-circuit-breaker-test")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @Slf4j
 @Ignore("Test takes too long")
 public class Rs4jCrcuitBreakerTest {
     private static final int TOTAL_ROUNDS = 100;
-    private static final String SHORT_CICUIT_MSG = "CircuitBreaker 'Get_Hotel_Info' is OPEN and does not permit further calls";
+    private static final String SHORT_CICUIT_MSG = "CircuitBreaker 'hotel' is OPEN and does not permit further calls";
 
     @Autowired
     private MyTripController myTripController;

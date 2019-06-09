@@ -12,7 +12,7 @@ import pers.xiaoming.fault_tolerance.common.test.TestConstants;
 import pers.xiaoming.fault_tolerance.rs4j_annotation.Application;
 import pers.xiaoming.fault_tolerance.rs4j_annotation.controller.MyTripController;
 
-@ActiveProfiles("rs4j-basic-func-test")
+@ActiveProfiles("rs4j-annotation-basic-func-test")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 public class BasicFunctionalTest {

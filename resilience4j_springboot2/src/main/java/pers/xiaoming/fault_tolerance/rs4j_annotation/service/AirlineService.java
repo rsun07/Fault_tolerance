@@ -18,7 +18,7 @@ public class AirlineService {
         this.client = client;
     }
 
-    @CircuitBreaker(name = "airline_backend")
+    @CircuitBreaker(name = "airline")
     public String get(long id) throws IOException {
         return client.get(id);
     }

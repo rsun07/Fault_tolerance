@@ -9,7 +9,7 @@ import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 import pers.xiaoming.fault_tolerance.common.test.TestAirlineDefaultValueHttpClient;
 import pers.xiaoming.fault_tolerance.common.test.TestHotelDefaultValueHttpClient;
 
-@Profile("rs4j-basic-func-test")
+@Profile("rs4j-annotation-basic-func-test")
 @Configuration
 public class BasicFunctionalTestConfig {
     // Indicates that a bean should be given preference when multiple candidates

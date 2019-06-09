@@ -1,4 +1,4 @@
-spring.application.name: resilience4j_annotation_demo_service
+spring.application.name: resilience4j_demo_service
 server:
   port: ${PORT:8080}
 
@@ -16,9 +16,9 @@ resilience4j.circuitbreaker:
       ringBufferSizeInHalfOpenState: 2
 
   instances:
-    hotel:
+    airline_backend:
       baseConfig: default
-    airline:
+    hotel_backend:
       failureRateThreshold: 40
       waitInterval: 5000
       ringBufferSizeInClosedState: 10

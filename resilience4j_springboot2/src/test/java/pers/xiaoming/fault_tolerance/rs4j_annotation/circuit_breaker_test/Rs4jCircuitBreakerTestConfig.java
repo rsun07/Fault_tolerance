@@ -9,7 +9,7 @@ import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 import pers.xiaoming.fault_tolerance.common.test.CircuitBreakerTestHotelHttpClient;
 import pers.xiaoming.fault_tolerance.common.test.TestAirlineDefaultValueHttpClient;
 
-@Profile("rs4j-circuit-breaker-test")
+@Profile("rs4j-annotation-circuit-breaker-test")
 @Configuration
 public class Rs4jCircuitBreakerTestConfig {
     static final int LOWER_ERROR_THRESHOLD_FOR_TEST = 5;

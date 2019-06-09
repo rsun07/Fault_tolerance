@@ -18,7 +18,7 @@ public class HotelService {
         this.client = client;
     }
 
-    @CircuitBreaker(name = "hotel_backend")
+    @CircuitBreaker(name = "hotel")
     public String get(long id) throws IOException {
         return client.get(id);
     }
