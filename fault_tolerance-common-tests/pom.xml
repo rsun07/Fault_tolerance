@@ -9,5 +9,14 @@
         <artifactId>fault_tolerance</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>fault_tolerance-common</artifactId>
+    <artifactId>fault_tolerance-common-tests</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>pers.xiaoming.fault_tolerance</groupId>
+            <artifactId>fault_tolerance-common</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>

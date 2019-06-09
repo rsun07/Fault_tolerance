@@ -16,18 +16,18 @@
       <artifactId>fault_tolerance-common</artifactId>
       <version>${parent.version}</version>
     </dependency>
-    <dependency>
-      <groupId>pers.xiaoming.fault_tolerance</groupId>
-      <artifactId>fault_tolerance-common</artifactId>
-      <version>${parent.version}</version>
-      <scope>test</scope>
-      <classifier>test</classifier>
-    </dependency>
 
     <dependency>
       <groupId>com.netflix.hystrix</groupId>
       <artifactId>hystrix-core</artifactId>
       <version>1.5.18</version>
+    </dependency>
+
+    <dependency>
+      <groupId>pers.xiaoming.fault_tolerance</groupId>
+      <artifactId>fault_tolerance-common-tests</artifactId>
+      <version>${parent.version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>

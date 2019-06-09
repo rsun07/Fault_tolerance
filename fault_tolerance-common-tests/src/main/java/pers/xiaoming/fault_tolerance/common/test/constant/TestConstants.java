@@ -12,14 +12,14 @@ import java.time.LocalDateTime;
 public class TestConstants {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-    public static final HotelInfo DEMO_HOTEL_INFO = HotelInfo.builder()
+    private static final HotelInfo DEMO_HOTEL_INFO = HotelInfo.builder()
             .refNum(101)
             .name("Hyatt")
             .checkinDate(LocalDate.now().toString())
             .checkoutDate(LocalDate.now().plusDays(1).toString())
             .build();
 
-    public static final AirlineInfo DEMO_AIRLINE_INFO = AirlineInfo.builder()
+    private static final AirlineInfo DEMO_AIRLINE_INFO = AirlineInfo.builder()
             .refNum(101)
             .name("AA")
             .departureAirportName("IAD")
