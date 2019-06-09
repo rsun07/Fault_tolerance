@@ -9,11 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pers.xiaoming.fault_tolerance.common.test.client.CircuitBreakerTestHotelHttpClient;
-import pers.xiaoming.fault_tolerance.common.test.executor.CircuitBreakerExecutor;
+import pers.xiaoming.fault_tolerance.common.test.executor.CircuitBreakerTestExecutor;
 import pers.xiaoming.fault_tolerance.hystrix.Application;
 import pers.xiaoming.fault_tolerance.hystrix.controller.MyTripController;
-
-import java.io.IOException;
 
 @ActiveProfiles("hystrix-circuit-breaker-test")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,7 +30,7 @@ public class HystrixCircuitBreakerTest {
     private CircuitBreakerTestHotelHttpClient httpClient;
 
     @Test
-    public void testCircuitBreaker() throws IOException, InterruptedException {
-        CircuitBreakerExecutor.execute(TOTAL_ROUNDS, SHORT_CIRCUIT_MSG, httpClient, myTripController::get);
+    public void testCircuitBreaker() throws InterruptedException {
+        CircuitBreakerTestExecutor.execute(TOTAL_ROUNDS, SHORT_CIRCUIT_MSG, httpClient, myTripController::get);
     }
 }

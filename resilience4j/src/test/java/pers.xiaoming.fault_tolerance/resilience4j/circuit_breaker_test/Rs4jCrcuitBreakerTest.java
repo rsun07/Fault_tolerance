@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pers.xiaoming.fault_tolerance.common.test.client.CircuitBreakerTestHotelHttpClient;
-import pers.xiaoming.fault_tolerance.common.test.executor.CircuitBreakerExecutor;
+import pers.xiaoming.fault_tolerance.common.test.executor.CircuitBreakerTestExecutor;
 import pers.xiaoming.fault_tolerance.resilience4j.Application;
 import pers.xiaoming.fault_tolerance.resilience4j.controller.MyTripController;
 
@@ -31,6 +31,6 @@ public class Rs4jCrcuitBreakerTest {
 
     @Test
     public void testCircuitBreaker() throws InterruptedException, IOException {
-        CircuitBreakerExecutor.execute(TOTAL_ROUNDS, SHORT_CIRCUIT_MSG, httpClient, myTripController::get);
+        CircuitBreakerTestExecutor.execute(TOTAL_ROUNDS, SHORT_CIRCUIT_MSG, httpClient, myTripController::get);
     }
 }

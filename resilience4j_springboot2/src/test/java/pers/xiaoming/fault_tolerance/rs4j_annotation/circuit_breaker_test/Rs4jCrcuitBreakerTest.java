@@ -8,11 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pers.xiaoming.fault_tolerance.common.test.client.CircuitBreakerTestHotelHttpClient;
-import pers.xiaoming.fault_tolerance.common.test.executor.CircuitBreakerExecutor;
+import pers.xiaoming.fault_tolerance.common.test.executor.CircuitBreakerTestExecutor;
 import pers.xiaoming.fault_tolerance.rs4j_annotation.Application;
 import pers.xiaoming.fault_tolerance.rs4j_annotation.controller.MyTripController;
-
-import java.io.IOException;
 
 @ActiveProfiles("rs4j-annotation-circuit-breaker-test")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -31,6 +29,6 @@ public class Rs4jCrcuitBreakerTest {
 
     @Test
     public void testCircuitBreaker() throws InterruptedException {
-        CircuitBreakerExecutor.execute(TOTAL_ROUNDS, SHORT_CICUIT_MSG, httpClient, myTripController::get);
+        CircuitBreakerTestExecutor.execute(TOTAL_ROUNDS, SHORT_CICUIT_MSG, httpClient, myTripController::get);
     }
 }

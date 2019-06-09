@@ -7,7 +7,7 @@ import pers.xiaoming.fault_tolerance.common.test.client.CircuitBreakerTestHotelH
 import pers.xiaoming.fault_tolerance.common.test.constant.TestConstants;
 
 @Slf4j
-public class CircuitBreakerExecutor {
+public class CircuitBreakerTestExecutor {
 
     public static void execute(int totalRounds, String shotCircuitMsg,
                                CircuitBreakerTestHotelHttpClient client, ControllerFunction<Integer, TripInfo> func)
