@@ -15,7 +15,7 @@ import pers.xiaoming.fault_tolerance.rs4j_annotation.controller.MyTripController
 
 import java.io.IOException;
 
-@ActiveProfiles("rs4j-fallback-test")
+@ActiveProfiles("rs4j-annotation-fallback-test")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @Slf4j
@@ -34,7 +34,7 @@ public class Rs4jFallbackTest {
                 fallbackTripInfo = myTripController.get(111);
             } catch (Exception e) {
                 // no log will be printed
-                log.info(e.getMessage());
+                e.printStackTrace();
             }
 
             if (fallbackTripInfo != null) {

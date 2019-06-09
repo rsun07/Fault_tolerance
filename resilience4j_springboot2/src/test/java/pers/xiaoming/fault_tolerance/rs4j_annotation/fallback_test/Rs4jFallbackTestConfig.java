@@ -8,8 +8,9 @@ import org.springframework.context.annotation.Profile;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 import pers.xiaoming.fault_tolerance.common.test.FallbackTestHotelHttpClient;
 import pers.xiaoming.fault_tolerance.common.test.TestAirlineDefaultValueHttpClient;
+import pers.xiaoming.fault_tolerance.rs4j_annotation.service.HotelService;
 
-@Profile("rs4j-fallback-test")
+@Profile("rs4j-annotation-fallback-test")
 @Configuration
 public class Rs4jFallbackTestConfig {
     private static final int LOWER_ERROR_THRESHOLD_FOR_TEST = 5;
@@ -28,5 +29,12 @@ public class Rs4jFallbackTestConfig {
     @Qualifier("airlineClient")
     public HttpClient getMockAirlineClient() {
         return new TestAirlineDefaultValueHttpClient();
+    }
+
+    @Primary
+    @Bean
+    @Qualifier("hotelService")
+    public HotelService getTestHotelService(@Qualifier("hotelClient") HttpClient client) {
+        return new Rs4jTestHotelService(client);
     }
 }

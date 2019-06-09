@@ -1,4 +1,9 @@
 spring.application.name: resilience4j_annotation_demo_service
+
+spring:
+  profiles:
+    active: service
+
 server:
   port: ${PORT:8080}
 
