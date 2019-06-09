@@ -1,7 +1,8 @@
-package pers.xiaoming.fault_tolerance.common.test;
+package pers.xiaoming.fault_tolerance.common.test.client;
 
 import lombok.extern.slf4j.Slf4j;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
+import pers.xiaoming.fault_tolerance.common.test.constant.TestConstants;
 
 import java.io.IOException;
 

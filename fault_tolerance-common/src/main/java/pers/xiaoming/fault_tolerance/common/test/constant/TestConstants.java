@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.common.test;
+package pers.xiaoming.fault_tolerance.common.test.constant;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

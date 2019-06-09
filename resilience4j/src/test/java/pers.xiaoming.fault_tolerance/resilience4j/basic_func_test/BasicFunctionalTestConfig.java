@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
-import pers.xiaoming.fault_tolerance.common.test.TestAirlineDefaultValueHttpClient;
-import pers.xiaoming.fault_tolerance.common.test.TestHotelDefaultValueHttpClient;
+import pers.xiaoming.fault_tolerance.common.test.client.TestAirlineDefaultValueHttpClient;
+import pers.xiaoming.fault_tolerance.common.test.client.TestHotelDefaultValueHttpClient;
 
 @Profile("rs4j-basic-func-test")
 @Configuration

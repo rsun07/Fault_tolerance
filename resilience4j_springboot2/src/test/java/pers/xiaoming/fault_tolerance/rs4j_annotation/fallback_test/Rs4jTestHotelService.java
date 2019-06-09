@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
-import pers.xiaoming.fault_tolerance.common.test.TestConstants;
+import pers.xiaoming.fault_tolerance.common.test.constant.TestConstants;
 import pers.xiaoming.fault_tolerance.rs4j_annotation.service.HotelService;
 
 import java.io.IOException;

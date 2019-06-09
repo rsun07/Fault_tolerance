@@ -11,8 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
-import pers.xiaoming.fault_tolerance.common.test.CircuitBreakerTestHotelHttpClient;
-import pers.xiaoming.fault_tolerance.common.test.TestConstants;
+import pers.xiaoming.fault_tolerance.common.test.client.CircuitBreakerTestHotelHttpClient;
+import pers.xiaoming.fault_tolerance.common.test.constant.TestConstants;
 import pers.xiaoming.fault_tolerance.hystrix.Application;
 import pers.xiaoming.fault_tolerance.hystrix.controller.MyTripController;
 
@@ -22,6 +22,7 @@ import java.io.IOException;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @Slf4j
+@Ignore
 public class HystrixCircuitBreakerTest {
     static final int TOTAL_ROUNDS = 100;
 
@@ -56,7 +57,7 @@ public class HystrixCircuitBreakerTest {
                 }
             }
 
-            // pers.xiaoming.fault_tolerance.common.test.CircuitBreakerTestHotelHttpClient
+            // pers.xiaoming.fault_tolerance.common.test.client.CircuitBreakerTestHotelHttpClient
             // 0-20 should be success call
             // 21-60 should be failed call
             // 61-100 should be success call

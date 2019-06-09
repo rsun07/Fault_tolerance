@@ -1,4 +1,4 @@
-package pers.xiaoming.fault_tolerance.common.test;
+package pers.xiaoming.fault_tolerance.common.test.client;
 
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 

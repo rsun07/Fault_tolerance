@@ -1,9 +1,7 @@
 package pers.xiaoming.fault_tolerance.resilience4j.circuit_breaker_test;
 
-import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pers.xiaoming.fault_tolerance.common.entity.TripInfo;
-import pers.xiaoming.fault_tolerance.common.test.CircuitBreakerTestHotelHttpClient;
-import pers.xiaoming.fault_tolerance.common.test.TestConstants;
+import pers.xiaoming.fault_tolerance.common.test.client.CircuitBreakerTestHotelHttpClient;
+import pers.xiaoming.fault_tolerance.common.test.constant.TestConstants;
 import pers.xiaoming.fault_tolerance.resilience4j.Application;
 import pers.xiaoming.fault_tolerance.resilience4j.controller.MyTripController;
 
@@ -56,7 +54,7 @@ public class Rs4jCrcuitBreakerTest {
                 }
             }
 
-            // pers.xiaoming.fault_tolerance.common.test.CircuitBreakerTestHotelHttpClient
+            // pers.xiaoming.fault_tolerance.common.test.client.CircuitBreakerTestHotelHttpClient
             // 0-20 should be success call
             // 21-60 should be failed call
             // 61-100 should be success call

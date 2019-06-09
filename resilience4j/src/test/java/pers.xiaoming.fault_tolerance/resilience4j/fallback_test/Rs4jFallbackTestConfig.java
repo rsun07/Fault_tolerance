@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
-import pers.xiaoming.fault_tolerance.common.test.FallbackTestHotelHttpClient;
-import pers.xiaoming.fault_tolerance.common.test.TestAirlineDefaultValueHttpClient;
-import pers.xiaoming.fault_tolerance.common.test.TestConstants;
+import pers.xiaoming.fault_tolerance.common.test.client.FallbackTestHotelHttpClient;
+import pers.xiaoming.fault_tolerance.common.test.client.TestAirlineDefaultValueHttpClient;
+import pers.xiaoming.fault_tolerance.common.test.constant.TestConstants;
 import pers.xiaoming.fault_tolerance.resilience4j.rs4j.CircuitBreakerConfigManager;
 import pers.xiaoming.fault_tolerance.resilience4j.rs4j.Rs4jCommandFactory;
 
