@@ -14,7 +14,7 @@ import pers.xiaoming.fault_tolerance.resilience4j.rs4j.Rs4jCommandFactory;
 @Profile("rs4j-circuit-breaker-test")
 @Configuration
 public class Rs4jCircuitBreakerTestConfig {
-    static final int LOWER_ERROR_THRESHOLD_FOR_TEST = 5;
+    private static final int LOWER_ERROR_THRESHOLD_FOR_TEST = 5;
 
     // Indicates that a bean should be given preference when multiple candidates
     // are qualified to autowire a single-valued dependency.
@@ -22,7 +22,7 @@ public class Rs4jCircuitBreakerTestConfig {
     @Bean
     @Qualifier("hotelClient")
     public HttpClient getMockHotelClient() {
-        return new CircuitBreakerTestHotelHttpClient(LOWER_ERROR_THRESHOLD_FOR_TEST);
+        return new CircuitBreakerTestHotelHttpClient(Rs4jCrcuitBreakerTest.TOTAL_ROUNDS);
     }
 
     @Primary
@@ -31,7 +31,7 @@ public class Rs4jCircuitBreakerTestConfig {
     public Rs4jCommandFactory<String> getMockHotelRs4jCommandFactory() {
         CircuitBreakerConfigManager<String> configs = CircuitBreakerConfigManager.<String>builder()
                 .failureThresholdPercentage(LOWER_ERROR_THRESHOLD_FOR_TEST)
-                .waitDuringOpenStateInMilliseconds(10000)
+                .waitDuringOpenStateInMilliseconds(50)
                 .ringBufferSizeInClosedState(LOWER_ERROR_THRESHOLD_FOR_TEST)
                 .ringBufferSizeInHalfOpenState(1)
                 .build();

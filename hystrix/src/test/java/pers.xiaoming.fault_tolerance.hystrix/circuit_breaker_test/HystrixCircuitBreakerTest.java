@@ -22,7 +22,6 @@ import java.io.IOException;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @Slf4j
-@Ignore("Test takes too long")
 public class HystrixCircuitBreakerTest {
     static final int TOTAL_ROUNDS = 100;
 
@@ -62,14 +61,14 @@ public class HystrixCircuitBreakerTest {
             // 21-60 should be failed call
             // 61-100 should be success call
             switch(i) {
-                case 11:
-                case 91:
+                case 12:
+                case 92:
                     log.info("Checking at i = {}", i);
                     Assert.assertSame(false, isCurcuitBreakerOpen);
                     Assert.assertEquals(tripInfo, TestConstants.DEMO_TRIP_INFO);
                     log.info("Check passed at i = {}", i);
                     break;
-                case 51 :
+                case 52 :
                     log.info("Checking at i = {}", i);
                     Assert.assertSame(true, isCurcuitBreakerOpen);
                     Assert.assertEquals(SHORT_CIRCUIT_MSG, lastMessage);
