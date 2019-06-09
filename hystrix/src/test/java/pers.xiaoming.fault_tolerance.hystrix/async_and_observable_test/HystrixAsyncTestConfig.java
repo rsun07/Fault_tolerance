@@ -9,8 +9,8 @@ import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 import pers.xiaoming.fault_tolerance.common.test.client.AsyncTestAirlineHttpClient;
 import pers.xiaoming.fault_tolerance.common.test.client.AsyncTestHotelHttpClient;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixCommandFactory;
-import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixObservableCommandFactory;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixConfigsManager;
+import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixObservableCommandFactory;
 
 @Profile("hystrix-async-test")
 @Configuration

@@ -4,7 +4,6 @@ import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.time.Duration;
 

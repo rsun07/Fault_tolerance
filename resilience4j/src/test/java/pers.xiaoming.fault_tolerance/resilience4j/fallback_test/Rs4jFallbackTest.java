@@ -11,8 +11,6 @@ import pers.xiaoming.fault_tolerance.common.test.executor.FallbackTestExecutor;
 import pers.xiaoming.fault_tolerance.resilience4j.Application;
 import pers.xiaoming.fault_tolerance.resilience4j.controller.MyTripController;
 
-import java.io.IOException;
-
 @ActiveProfiles("rs4j-fallback-test")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)

@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Profile;
 import pers.xiaoming.fault_tolerance.common.backends.HttpClient;
 import pers.xiaoming.fault_tolerance.common.test.client.CircuitBreakerTestHotelHttpClient;
 import pers.xiaoming.fault_tolerance.common.test.client.TestAirlineDefaultValueHttpClient;
-import pers.xiaoming.fault_tolerance.rs4j_annotation.fallback_test.Rs4jTestHotelService;
 
 @Profile("rs4j-annotation-circuit-breaker-test")
 @Configuration

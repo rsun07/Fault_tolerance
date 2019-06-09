@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixCommandFactory;
-import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixObservableCommandFactory;
 import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixConfigsManager;
+import pers.xiaoming.fault_tolerance.hystrix.hystrix.HystrixObservableCommandFactory;
 
 @Configuration
 @SuppressWarnings("unchecked")
