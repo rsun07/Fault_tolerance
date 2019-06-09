@@ -15,17 +15,16 @@ backends:
 resilience4j.circuitbreaker:
   configs:
     default:
-      failureRateThreshold: 50
-      waitInterval: 10000
+      failureRateThreshold: 40
+      waitDurationInOpenState: 10000
       ringBufferSizeInClosedState: 10
       ringBufferSizeInHalfOpenState: 2
 
-  instances:
+  backends:
     airline:
       baseConfig: default
     hotel:
       failureRateThreshold: 5
-      waitInterval: 5000
+      waitDurationInOpenState: 50
       ringBufferSizeInClosedState: 5
-      ringBufferSizeInHalfOpenState: 2
-
+      ringBufferSizeInHalfOpenState: 1
