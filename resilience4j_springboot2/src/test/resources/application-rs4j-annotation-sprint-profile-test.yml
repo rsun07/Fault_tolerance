@@ -1,0 +1,30 @@
+spring.application.name: rs4j-annotation-circuit-breaker-test
+
+spring:
+  profiles:
+    active: rs4j-annotation-sprint-profile-test
+
+server:
+  port: ${PORT:8080}
+
+backends:
+  hosts:
+    hotel-endpoint: localhost:9090
+    airline-endpoint: localhost:7070
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      failureRateThreshold: 45
+      waitDurationInOpenState: 6000
+      ringBufferSizeInClosedState: 15
+      ringBufferSizeInHalfOpenState: 1
+
+  backends:
+    airline:
+      baseConfig: default
+    hotel:
+      failureRateThreshold: 30
+      waitDurationInOpenState: 50
+      ringBufferSizeInClosedState: 20
+      ringBufferSizeInHalfOpenState: 2
