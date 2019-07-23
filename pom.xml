@@ -14,7 +14,7 @@
         <module>fault_tolerance-common-tests</module>
         <module>hystrix</module>
         <module>resilience4j</module>
-        <module>resilience4j_springboot2</module>
+        <module>resilience4j-springboot-annotation</module>
     </modules>
 
     <properties>
